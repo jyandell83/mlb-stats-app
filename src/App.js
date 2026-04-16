@@ -3,11 +3,13 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  
+  const today = new Date();
+  const formattedDate = today.toISOString().split("T")[0];
 
   useEffect(() => {
-    const today = new Date().toISOString().split("T")[0];
-
-    fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${today}`)
+    
+    fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`)
       .then((res) => res.json())
       .then((data) => {
         const allGames = data.dates?.[0]?.games || [];
@@ -18,19 +20,23 @@ export default function App() {
         console.error(err);
         setLoading(false);
       });
-  }, []);
+  }, [formattedDate]);
 
   if (loading) {
-    return <div className="p-4 text-lg">Loading games...</div>;
+    return <div className="loading">Loading games...</div>;
   }
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Today's MLB Games</h1>
+    <div className="container">
+      <h1 className="title">MLB Games - {today.toLocaleDateString(undefined, {
+  weekday: "long",
+  month: "long",
+  day: "numeric",
+})}</h1>
 
       {games.length === 0 && <div>No games today.</div>}
 
-      <ul className="space-y-3">
+      <ul className="gameList">
         {games.map((game) => {
           const home = game.teams.home.team.name;
           const away = game.teams.away.team.name;
@@ -42,16 +48,16 @@ export default function App() {
           return (
             <li
               key={game.gamePk}
-              className="p-4 border rounded-xl shadow-sm"
+              className="gameCard"
             >
               <div className="font-semibold">
                 {away} @ {home}
               </div>
-              <div className="text-sm mt-1">
+              <div className="score">
                 Score: {awayScore} - {homeScore}
               </div>
-              <div className="text-sm text-gray-500">{status}</div>
-              <div className="text-sm text-gray-500">{gameTime}</div>
+              <div className="status">{status}</div>
+              <div className="status">{gameTime}</div>
             </li>
           );
         })}
