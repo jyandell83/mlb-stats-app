@@ -8,19 +8,38 @@ export default function App() {
   const formattedDate = today.toISOString().split("T")[0];
 
   useEffect(() => {
-    
-    fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`)
+    const interval = setInterval(() => {
+      fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`)
       .then((res) => res.json())
       .then((data) => {
         const allGames = data.dates?.[0]?.games || [];
         setGames(allGames);
         setLoading(false);
+        console.log("refreshed");
       })
       .catch((err) => {
         console.error(err);
         setLoading(false);
       });
+    }, 30000); // every 30 sec
+  
+    return () => clearInterval(interval);
   }, [formattedDate]);
+
+  // useEffect(() => {
+    
+  //   fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`)
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       const allGames = data.dates?.[0]?.games || [];
+  //       setGames(allGames);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       setLoading(false);
+  //     });
+  // }, [formattedDate]);
 
   if (loading) {
     return <div className="loading">Loading games...</div>;
