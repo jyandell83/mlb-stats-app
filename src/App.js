@@ -3,31 +3,38 @@ import { useEffect, useState } from "react";
 export default function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
-  
+
   const today = new Date();
   const formattedDate = today.toISOString().split("T")[0];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`)
-      .then((res) => res.json())
-      .then((data) => {
-        const allGames = data.dates?.[0]?.games || [];
-        setGames(allGames);
-        setLoading(false);
-        console.log("refreshed");
-      })
-      .catch((err) => {
-        console.error(err);
-        setLoading(false);
-      });
-    }, 30000); // every 30 sec
-  
+    const fetchGames = () => {
+      fetch(
+        `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          const allGames = data.dates?.[0]?.games || [];
+          setGames(allGames);
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error(err);
+          setLoading(false);
+        });
+    };
+
+    // ✅ run immediately
+    fetchGames();
+
+    // ✅ then run every 30 sec
+    const interval = setInterval(fetchGames, 30000);
+
     return () => clearInterval(interval);
   }, [formattedDate]);
 
   // useEffect(() => {
-    
+
   //   fetch(`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`)
   //     .then((res) => res.json())
   //     .then((data) => {
@@ -47,11 +54,14 @@ export default function App() {
 
   return (
     <div className="container">
-      <h1 className="title">MLB Games - {today.toLocaleDateString(undefined, {
-  weekday: "long",
-  month: "long",
-  day: "numeric",
-})}</h1>
+      <h1 className="title">
+        MLB Games -{" "}
+        {today.toLocaleDateString(undefined, {
+          weekday: "long",
+          month: "long",
+          day: "numeric",
+        })}
+      </h1>
 
       {games.length === 0 && <div>No games today.</div>}
 
@@ -65,10 +75,7 @@ export default function App() {
           const gameTime = new Date(game.gameDate).toLocaleTimeString();
 
           return (
-            <li
-              key={game.gamePk}
-              className="gameCard"
-            >
+            <li key={game.gamePk} className="gameCard">
               <div className="font-semibold">
                 {away} @ {home}
               </div>
