@@ -21,7 +21,7 @@ export default function GameList({ games, setSelectedGamePk }) {
               setSelectedGamePk(game.gamePk);
             }}
           >
-            <div className="font-semibold">
+            <div className="title">
               {away} ({awayTeamWins} - {awayTeamLosses}) @ {home}({homeTeamWins}{" "}
               - {homeTeamLosses})
             </div>

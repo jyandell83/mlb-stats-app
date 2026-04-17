@@ -1,0 +1,17 @@
+:root {
+  --bg: #f4f4f5;
+  --card: #ffffff;
+  --text: #111827;
+  --primary: #0c2340;
+  --accent: #c8102e;
+  --font-family: "Inter", system-ui, sans-serif;
+  --font-family-header: "Oswald", sans-serif;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1220;
+  --card: #111827;
+  --text: #f3f4f6;
+  --primary: #1e3a8a;
+  --accent: #ef4444;
+}
