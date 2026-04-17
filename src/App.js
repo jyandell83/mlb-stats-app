@@ -10,13 +10,12 @@ export default function App() {
   const [highlightId, setHighlightId] = useState(null);
 
   const today = new Date();
-  const formattedDate = today.toISOString().split("T")[0];
+  const formattedDate = today.toLocaleDateString("en-CA");
 
   useEffect(() => {
     const fetchGames = () => {
       fetch(
-        //`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`
-        `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2026-04-16`
+        `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`
       )
         .then((res) => res.json())
         .then((data) => {
