@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 import GameList from "./components/GameList/GameList";
+import GameDetail from "./components/GameDetails/GameDetail";
 
 export default function App() {
   const [games, setGames] = useState([]);
@@ -80,20 +81,7 @@ export default function App() {
 
       {games.length === 0 && <div>No games today.</div>}
       <GameList games={games} setSelectedGamePk={setSelectedGamePk} />
-
-      {selectedGamePk && gameDetails && (
-        <div className="details">
-          <div>
-            {gameDetails.liveData.linescore.inningState}{" "}
-            {gameDetails.liveData.linescore.currentInning}
-          </div>
-
-          <div>
-            {gameDetails.liveData.plays.currentPlay?.result?.description ??
-              "No play yet"}
-          </div>
-        </div>
-      )}
+      <GameDetail selectedGamePk={selectedGamePk} gameDetails={gameDetails} />
     </div>
   );
 }
