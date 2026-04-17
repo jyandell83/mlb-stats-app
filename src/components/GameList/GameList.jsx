@@ -12,6 +12,9 @@ export default function GameList({ games, setSelectedGamePk }) {
         const awayTeamLosses = game.teams.away.leagueRecord.losses;
         const status = game.status.detailedState;
         const gameTime = new Date(game.gameDate).toLocaleTimeString();
+        const venue = game.venue.name;
+
+        console.log(game);
 
         return (
           <li
@@ -21,15 +24,28 @@ export default function GameList({ games, setSelectedGamePk }) {
               setSelectedGamePk(game.gamePk);
             }}
           >
-            <div className="title">
-              {away} ({awayTeamWins} - {awayTeamLosses}) @ {home}({homeTeamWins}{" "}
-              - {homeTeamLosses})
+            <div className="flex justify-evenly">
+              <div className="flex flex-col align-center">
+                <div className="text-lg">{away}</div>
+                <div className="text-sm">
+                  ({awayTeamWins} - {awayTeamLosses})
+                </div>
+              </div>
+              <div>@</div>
+              <div className="flex flex-col align-center">
+                <div className="text-lg">{home}</div>
+                <div className="text-sm">
+                  ({homeTeamWins} - {homeTeamLosses})
+                </div>
+              </div>
             </div>
-            <div className="score">
-              Score: {awayScore} - {homeScore}
+            <div className="score text-xl">
+              {!awayScore && !homeScore ? `${awayScore} - ${homeScore}` : ""}
             </div>
             <div className="status">{status}</div>
-            <div className="status">{gameTime}</div>
+            <div className="status">
+              {gameTime} at {venue}
+            </div>
           </li>
         );
       })}
