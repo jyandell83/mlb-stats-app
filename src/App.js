@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
 
+import GameList from "./components/GameList/GameList";
+
 export default function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedGamePk, setSelectedGamePk] = useState(null);
+  const [gameDetails, setGameDetails] = useState(null);
   const [highlightId, setHighlightId] = useState(null);
 
   const today = new Date();
@@ -11,7 +15,8 @@ export default function App() {
   useEffect(() => {
     const fetchGames = () => {
       fetch(
-        `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`
+        //`https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`
+        `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=2026-04-16`
       )
         .then((res) => res.json())
         .then((data) => {
@@ -42,6 +47,23 @@ export default function App() {
     return () => clearInterval(interval);
   }, [formattedDate]);
 
+  useEffect(() => {
+    if (!selectedGamePk) return;
+
+    const fetchDetails = () => {
+      fetch(
+        `https://statsapi.mlb.com/api/v1.1/game/${selectedGamePk}/feed/live`
+      )
+        .then((res) => res.json())
+        .then(setGameDetails);
+    };
+
+    fetchDetails();
+    const interval = setInterval(fetchDetails, 15000);
+
+    return () => clearInterval(interval);
+  }, [selectedGamePk]);
+
   if (loading) {
     return <div className="loading">Loading games...</div>;
   }
@@ -58,39 +80,21 @@ export default function App() {
       </h1>
 
       {games.length === 0 && <div>No games today.</div>}
+      <GameList games={games} setSelectedGamePk={setSelectedGamePk} />
 
-      <ul className="gameList">
-        {games.map((game) => {
-          const home = game.teams.home.team.name;
-          const away = game.teams.away.team.name;
-          const homeScore = game.teams.home.score ?? "-";
-          const awayScore = game.teams.away.score ?? "-";
-          const homeTeamWins = game.teams.home.leagueRecord.wins;
-          const homeTeamLosses = game.teams.home.leagueRecord.losses;
-          const awayTeamWins = game.teams.away.leagueRecord.wins;
-          const awayTeamLosses = game.teams.away.leagueRecord.losses;
-          const status = game.status.detailedState;
-          const gameTime = new Date(game.gameDate).toLocaleTimeString();
+      {selectedGamePk && gameDetails && (
+        <div className="details">
+          <div>
+            {gameDetails.liveData.linescore.inningState}{" "}
+            {gameDetails.liveData.linescore.currentInning}
+          </div>
 
-          return (
-            <li
-              className={`gameCard ${
-                highlightId === game.gamePk ? "highlight" : ""
-              }`}
-            >
-              <div className="font-semibold">
-                {away} Record: {awayTeamWins} - {awayTeamLosses} @ {home}
-                Record: {homeTeamWins} - {homeTeamLosses}
-              </div>
-              <div className="score">
-                Score: {awayScore} - {homeScore}
-              </div>
-              <div className="status">{status}</div>
-              <div className="status">{gameTime}</div>
-            </li>
-          );
-        })}
-      </ul>
+          <div>
+            {gameDetails.liveData.plays.currentPlay?.result?.description ??
+              "No play yet"}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
