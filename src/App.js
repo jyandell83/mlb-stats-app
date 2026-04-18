@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+import { getSchedule, getLiveGameFeed } from "./api/mlbApi";
+
 import GameList from "./components/GameList/GameList";
 import GameDetail from "./components/GameDetails/GameDetail";
 
@@ -15,9 +17,7 @@ export default function App() {
 
   useEffect(() => {
     const fetchGames = () => {
-      fetch(
-        `https://statsapi.mlb.com/api/v1/schedule?sportId=1&date=${formattedDate}`
-      )
+      fetch(getSchedule(formattedDate))
         .then((res) => res.json())
         .then((data) => {
           const allGames = data.dates?.[0]?.games || [];
@@ -51,9 +51,7 @@ export default function App() {
     if (!selectedGamePk) return;
 
     const fetchDetails = () => {
-      fetch(
-        `https://statsapi.mlb.com/api/v1.1/game/${selectedGamePk}/feed/live`
-      )
+      fetch(getLiveGameFeed(selectedGamePk))
         .then((res) => res.json())
         .then(setGameDetails);
     };
@@ -80,8 +78,10 @@ export default function App() {
       </h1>
 
       {games.length === 0 && <div>No games today.</div>}
-      <GameList games={games} setSelectedGamePk={setSelectedGamePk} />
-      <GameDetail selectedGamePk={selectedGamePk} gameDetails={gameDetails} />
+      <div className="flex">
+        <GameList games={games} setSelectedGamePk={setSelectedGamePk} />
+        <GameDetail selectedGamePk={selectedGamePk} gameDetails={gameDetails} />
+      </div>
     </div>
   );
 }

@@ -40,7 +40,7 @@ export default function GameList({ games, setSelectedGamePk }) {
               </div>
             </div>
             <div className="score text-xl">
-              {!awayScore && !homeScore ? `${awayScore} - ${homeScore}` : ""}
+              {awayScore ? `${awayScore} - ${homeScore}` : ""}
             </div>
             <div className="status">{status}</div>
             <div className="status">
