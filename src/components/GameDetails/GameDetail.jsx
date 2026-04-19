@@ -4,6 +4,7 @@ export default function GameDetail({ selectedGamePk, gameDetails }) {
       {selectedGamePk && gameDetails && (
         <div className="details">
           <div>
+            {selectedGamePk}
             {gameDetails.liveData.linescore.inningState}{" "}
             {gameDetails.liveData.linescore.currentInning}
           </div>

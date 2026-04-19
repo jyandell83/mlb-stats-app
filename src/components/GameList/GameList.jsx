@@ -1,4 +1,4 @@
-export default function GameList({ games, setSelectedGamePk }) {
+export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
   return (
     <ul className="gameList">
       {games.map((game) => {
@@ -13,13 +13,18 @@ export default function GameList({ games, setSelectedGamePk }) {
         const status = game.status.detailedState;
         const gameTime = new Date(game.gameDate).toLocaleTimeString();
         const venue = game.venue.name;
-
-        console.log(game);
+        const innings =
+          game.linescore && game.linescore.innings
+            ? game.linescore.innings
+            : [];
+        const numInnings = Math.max(innings.length, 9);
 
         return (
           <li
             key={game.gamePk}
-            className="gameCard"
+            className={`gameCard ${
+              selectedGamePk === game.gamePk ? "highlight" : ""
+            }`}
             onClick={() => {
               setSelectedGamePk(game.gamePk);
             }}
@@ -45,6 +50,15 @@ export default function GameList({ games, setSelectedGamePk }) {
             <div className="status">{status}</div>
             <div className="status">
               {gameTime} at {venue}
+            </div>
+            <div className="flex">
+              {innings.map((inning) => (
+                <div className="flex flex-col">
+                  <div className="underline">{inning.num}</div>
+                  <div>{inning.away.runs}</div>
+                  <div>{inning.home.runs}</div>
+                </div>
+              ))}
             </div>
           </li>
         );

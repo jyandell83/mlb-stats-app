@@ -74,6 +74,10 @@
   font-weight: bold;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 /* ===== Cursor ===== */
 .pointer {
   cursor: pointer;

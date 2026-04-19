@@ -79,7 +79,11 @@ export default function App() {
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex">
-        <GameList games={games} setSelectedGamePk={setSelectedGamePk} />
+        <GameList
+          games={games}
+          setSelectedGamePk={setSelectedGamePk}
+          selectedGamePk={selectedGamePk}
+        />
         <GameDetail selectedGamePk={selectedGamePk} gameDetails={gameDetails} />
       </div>
     </div>

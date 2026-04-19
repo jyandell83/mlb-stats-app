@@ -8,7 +8,7 @@ const LIVE_BASE_URL = "https://statsapi.mlb.com/api/v1.1";
  * - Use for main game list / scoreboard
  */
 export const getSchedule = (date) =>
-  `${BASE_URL}/schedule?sportId=1&date=2026-04-17&hydrate=linescore`;
+  `${BASE_URL}/schedule?sportId=1&date=2026-04-18&hydrate=linescore`;
 
 /**
  *  Get full live game data (VERY detailed)
