@@ -44,10 +44,12 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                 </div>
               </div>
             </div>
-            <div className="score text-xl">
-              {awayScore ? `${awayScore} - ${homeScore}` : ""}
+            <div className="score text-xl">{`${awayScore} - ${homeScore}`}</div>
+            <div className="status">
+              {status !== "In Progress"
+                ? status
+                : `${game.linescore.inningState} of ${game.linescore.currentInning}`}
             </div>
-            <div className="status">{status}</div>
             <div className="status">
               {gameTime} at {venue}
             </div>
@@ -64,7 +66,7 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                 <table className="inning-table">
                   <thead>
                     <tr>
-                      <th></th>
+                      <th>Team</th>
                       {innings.map((inning) => (
                         <th key={inning.num}>{inning.num}</th>
                       ))}
@@ -78,7 +80,7 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                     {/* Away Team */}
                     <tr>
                       <td className="team-cell">
-                        {game.teams.away.abbreviation}
+                        {game.linescore.teams.away.abbreviation}
                       </td>
 
                       {innings.map((inning) => (
