@@ -21,7 +21,30 @@ export default function App() {
         .then((res) => res.json())
         .then((data) => {
           const allGames = data.dates?.[0]?.games || [];
-          setGames(allGames);
+
+          /*** new functions to clean up/ test tomorrow, getPriority and sortGames */
+          const getPriority = (game) => {
+            const state = game.status?.detailedState;
+
+            if (state === "In Progress") return 0;
+            if (state === "Scheduled" || state === "Pre-Game") return 1;
+            if (state === "Final") return 2;
+
+            return 3; // fallback (delays, unknown states)
+          };
+          const sortGames = (games) => {
+            return [...games].sort((a, b) => {
+              const priorityDiff = getPriority(a) - getPriority(b);
+              if (priorityDiff !== 0) return priorityDiff;
+
+              // If both are live → sort by inning
+              const inningA = a.linescore?.currentInning ?? 0;
+              const inningB = b.linescore?.currentInning ?? 0;
+
+              return inningB - inningA;
+            });
+          };
+          setGames(sortGames(allGames));
           //just setting first game to highlight, eventually intention is to flash when score changes
           if (allGames.length > 0) {
             setHighlightId(allGames[0].gamePk);

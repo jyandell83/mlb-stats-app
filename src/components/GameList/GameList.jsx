@@ -52,13 +52,65 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
               {gameTime} at {venue}
             </div>
             <div className="flex">
-              {innings.map((inning) => (
+              {/* {innings.map((inning) => (
                 <div className="flex flex-col">
-                  <div className="underline">{inning.num}</div>
+                  <div className="underline">{inning.ordinalNum}</div>
                   <div>{inning.away.runs}</div>
                   <div>{inning.home.runs}</div>
                 </div>
-              ))}
+              ))} */}
+
+              <div className="inning-table-wrapper">
+                <table className="inning-table">
+                  <thead>
+                    <tr>
+                      <th></th>
+                      {innings.map((inning) => (
+                        <th key={inning.num}>{inning.num}</th>
+                      ))}
+                      <th>R</th>
+                      <th>H</th>
+                      <th>E</th>
+                    </tr>
+                  </thead>
+
+                  <tbody>
+                    {/* Away Team */}
+                    <tr>
+                      <td className="team-cell">
+                        {game.teams.away.abbreviation}
+                      </td>
+
+                      {innings.map((inning) => (
+                        <td key={inning.num}>{inning.away?.runs ?? ""}</td>
+                      ))}
+
+                      <td className="bold">
+                        {game.linescore.teams.away?.runs ?? "-"}
+                      </td>
+                      <td>{game.linescore.teams.away?.hits ?? "-"}</td>
+                      <td>{game.linescore.teams.away?.errors ?? "-"}</td>
+                    </tr>
+
+                    {/* Home Team */}
+                    <tr>
+                      <td className="team-cell">
+                        {game.teams.home.abbreviation}
+                      </td>
+
+                      {innings.map((inning) => (
+                        <td key={inning.num}>{inning.home?.runs ?? ""}</td>
+                      ))}
+
+                      <td className="bold">
+                        {game.linescore.teams.home?.runs ?? "-"}
+                      </td>
+                      <td>{game.linescore.teams.home?.hits ?? "-"}</td>
+                      <td>{game.linescore.teams.home?.errors ?? "-"}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </li>
         );
