@@ -4,6 +4,7 @@ import { getSchedule, getLiveGameFeed } from "./api/mlbApi";
 
 import GameList from "./components/GameList/GameList";
 import GameDetail from "./components/GameDetails/GameDetail";
+import PlayerModal from "./components/PlayerModal/PlayerModal";
 
 export default function App() {
   const [games, setGames] = useState([]);
@@ -11,6 +12,7 @@ export default function App() {
   const [selectedGamePk, setSelectedGamePk] = useState(null);
   const [gameDetails, setGameDetails] = useState(null);
   const [highlightId, setHighlightId] = useState(null);
+  const [playerModalOpen, setPlayerModalOpen] = useState(false);
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-CA");
@@ -93,6 +95,13 @@ export default function App() {
 
   return (
     <div className="container">
+      <div>
+        <button onClick={() => setPlayerModalOpen(true)}>Open Modal</button>
+
+        {playerModalOpen && (
+          <PlayerModal onClose={() => setPlayerModalOpen(false)} />
+        )}
+      </div>
       <h1 className="title">
         MLB Games -{" "}
         {today.toLocaleDateString(undefined, {
