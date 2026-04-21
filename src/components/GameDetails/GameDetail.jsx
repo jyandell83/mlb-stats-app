@@ -1,4 +1,8 @@
-export default function GameDetail({ selectedGamePk, gameDetails }) {
+export default function GameDetail({
+  selectedGamePk,
+  gameDetails,
+  handlePlayerClick,
+}) {
   return (
     <div>
       {selectedGamePk && gameDetails && (
@@ -21,7 +25,18 @@ export default function GameDetail({ selectedGamePk, gameDetails }) {
               {`${gameDetails.liveData.linescore.balls} - ${gameDetails.liveData.linescore.strikes}`}
             </div>
 
-            <div>{`P ${gameDetails.liveData.linescore.defense.pitcher.fullName}`}</div>
+            <div>
+              Pitching:{" "}
+              <button
+                onClick={() =>
+                  handlePlayerClick(
+                    gameDetails.liveData.linescore.defense.pitcher.fullName
+                  )
+                }
+              >
+                {gameDetails.liveData.linescore.defense.pitcher.fullName}
+              </button>
+            </div>
             <div>{`${gameDetails.liveData.linescore.offense.batter.fullName} at Bat`}</div>
           </div>
         </div>

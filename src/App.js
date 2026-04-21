@@ -13,6 +13,7 @@ export default function App() {
   const [gameDetails, setGameDetails] = useState(null);
   const [highlightId, setHighlightId] = useState(null);
   const [playerModalOpen, setPlayerModalOpen] = useState(false);
+  const [selectedPlayer, setSelectedPlayer] = useState(null);
 
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-CA");
@@ -93,13 +94,21 @@ export default function App() {
     return <div className="loading">Loading games...</div>;
   }
 
+  const handlePlayerClick = (player) => {
+    setSelectedPlayer(player);
+    setPlayerModalOpen(true);
+  };
+
   return (
     <div className="container">
       <div>
         <button onClick={() => setPlayerModalOpen(true)}>Open Modal</button>
 
         {playerModalOpen && (
-          <PlayerModal onClose={() => setPlayerModalOpen(false)} />
+          <PlayerModal
+            player={selectedPlayer}
+            onClose={() => setPlayerModalOpen(false)}
+          />
         )}
       </div>
       <h1 className="title">
@@ -118,7 +127,11 @@ export default function App() {
           setSelectedGamePk={setSelectedGamePk}
           selectedGamePk={selectedGamePk}
         />
-        <GameDetail selectedGamePk={selectedGamePk} gameDetails={gameDetails} />
+        <GameDetail
+          handlePlayerClick={handlePlayerClick}
+          selectedGamePk={selectedGamePk}
+          gameDetails={gameDetails}
+        />
       </div>
     </div>
   );
