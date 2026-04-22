@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { getPlayerStats } from "../../api/mlbApi";
 
-export default function PlayerModal({ onClose, playerId }) {
+export default function PlayerModal({ onClose, playerId, playerName }) {
   const [playerDetails, setPlayerDetails] = useState(null);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function PlayerModal({ onClose, playerId }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2>Player info here</h2>
+        <h2>{playerName}</h2>
         <div className="pitcher-stats">
           <h3>Pitching Stats</h3>
 

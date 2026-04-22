@@ -30,6 +30,7 @@ export default function GameDetail({
               <button
                 onClick={() =>
                   handlePlayerClick(
+                    gameDetails.liveData.linescore.defense.pitcher.fullName,
                     gameDetails.liveData.linescore.defense.pitcher.id
                   )
                 }
