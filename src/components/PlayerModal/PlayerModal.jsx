@@ -25,7 +25,6 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
         <h2>{playerName}</h2>
         <div className="pitcher-stats">
           <h3>Pitching Stats</h3>
-
           <table className="stats-table">
             <thead>
               <tr>

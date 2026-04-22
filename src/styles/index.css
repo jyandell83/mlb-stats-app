@@ -94,3 +94,7 @@ body {
   border-radius: 8px;
   min-width: 300px;
 }
+
+.team-logo {
+  height: 30px;
+}
