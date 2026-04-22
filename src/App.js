@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 
 import { getSchedule, getLiveGameFeed } from "./api/mlbApi";
 
+import Header from "./components/Header/Header";
 import GameList from "./components/GameList/GameList";
 import GameDetail from "./components/GameDetails/GameDetail";
 import PlayerModal from "./components/PlayerModal/PlayerModal";
@@ -104,8 +105,6 @@ export default function App() {
   return (
     <div className="container">
       <div>
-        <button onClick={() => setPlayerModalOpen(true)}>Open Modal</button>
-
         {playerModalOpen && (
           <PlayerModal
             playerId={selectedPlayerId}
@@ -114,14 +113,7 @@ export default function App() {
           />
         )}
       </div>
-      <h1 className="title">
-        MLB Games -{" "}
-        {today.toLocaleDateString(undefined, {
-          weekday: "long",
-          month: "long",
-          day: "numeric",
-        })}
-      </h1>
+      <Header />
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex">
