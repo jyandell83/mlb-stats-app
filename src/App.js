@@ -106,7 +106,7 @@ export default function App() {
 
         {playerModalOpen && (
           <PlayerModal
-            player={selectedPlayer}
+            playerId={selectedPlayer}
             onClose={() => setPlayerModalOpen(false)}
           />
         )}
