@@ -2,6 +2,9 @@
 const BASE_URL = "https://statsapi.mlb.com/api/v1";
 const LIVE_BASE_URL = "https://statsapi.mlb.com/api/v1.1";
 
+const today = new Date();
+const formattedDate = today.toLocaleDateString("en-CA");
+
 /**
  *  Get schedule + basic game data for a specific date
  * - Includes teams, score, inning, game status
@@ -10,7 +13,7 @@ const LIVE_BASE_URL = "https://statsapi.mlb.com/api/v1.1";
 
 //NOTE: hardcoding date for now to make dev easier, to be variable eventually
 export const getSchedule = (date) =>
-  `${BASE_URL}/schedule?sportId=1&date=2026-04-21&hydrate=linescore`;
+  `${BASE_URL}/schedule?sportId=1&date=${formattedDate}&hydrate=linescore`;
 
 /**
  *  Get full live game data (VERY detailed)
