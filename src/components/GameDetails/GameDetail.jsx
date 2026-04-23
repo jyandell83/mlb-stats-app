@@ -24,10 +24,9 @@ export default function GameDetail({
               Count:{" "}
               {`${gameDetails.liveData.linescore.balls} - ${gameDetails.liveData.linescore.strikes}`}
             </div>
-
             <div>
-              Pitching:{" "}
               <button
+                className="text-button"
                 onClick={() =>
                   handlePlayerClick(
                     gameDetails.liveData.linescore.defense.pitcher.fullName,
@@ -37,7 +36,20 @@ export default function GameDetail({
               >
                 {gameDetails.liveData.linescore.defense.pitcher.fullName}
               </button>
+              P: *Pitch count*
             </div>
+            *number in lineup*
+            <button
+              className="text-button"
+              onClick={() =>
+                handlePlayerClick(
+                  gameDetails.liveData.linescore.offense.batter.fullName,
+                  gameDetails.liveData.linescore.offense.batter.id
+                )
+              }
+            >
+              {gameDetails.liveData.linescore.offense.batter.fullName}
+            </button>
             <div>{`${gameDetails.liveData.linescore.offense.batter.fullName} at Bat`}</div>
           </div>
         </div>

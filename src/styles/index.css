@@ -7,6 +7,10 @@ body {
   font-family: var(--font-family);
 }
 
+th {
+  text-align: left;
+}
+
 .btn {
   background: var(--primary);
   color: white;
@@ -69,7 +73,7 @@ body {
 }
 
 .highlight {
-  border: 1px solid var(--accent);
+  border: 1px solid var(--primary);
   transition: background 0.3s ease;
 }
 
@@ -97,4 +101,20 @@ body {
 
 .team-logo {
   height: 30px;
+}
+
+.text-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  width: fit-content;
+}
+
+.text-button:hover {
+  text-decoration: underline;
 }

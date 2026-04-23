@@ -31,7 +31,7 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
               setSelectedGamePk(game.gamePk);
             }}
           >
-            <div className="flex justify-evenly">
+            <div className="flex justify-center">
               <div className="flex flex-col align-center">
                 <img
                   src={`https://www.mlbstatic.com/team-logos/${awayId}.svg`}
@@ -65,20 +65,12 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
             <div className="status">
               {gameTime} at {venue}
             </div>
-            <div className="flex">
-              {/* {innings.map((inning) => (
-                <div className="flex flex-col">
-                  <div className="underline">{inning.ordinalNum}</div>
-                  <div>{inning.away.runs}</div>
-                  <div>{inning.home.runs}</div>
-                </div>
-              ))} */}
-
+            <div>
               <div className="inning-table-wrapper">
-                <table className="inning-table">
+                <table className="inning-table w-full">
                   <thead>
                     <tr>
-                      <th>Team</th>
+                      <th></th>
                       {innings.map((inning) => (
                         <th key={inning.num}>{inning.num}</th>
                       ))}
