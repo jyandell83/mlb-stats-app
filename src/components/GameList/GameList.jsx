@@ -15,10 +15,10 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
         const status = game.status.detailedState;
         const gameTime = new Date(game.gameDate).toLocaleTimeString();
         const venue = game.venue.name;
-        const innings = Array.from({ length: 9 }, (_, i) => {
+        const numInnings = Math.max(game.linescore.innings.length, 9);
+        const innings = Array.from({ length: numInnings }, (_, i) => {
           return game.linescore?.innings?.[i] || {};
         });
-        const numInnings = Math.max(innings.length, 9);
 
         return (
           <li
