@@ -22,8 +22,6 @@ export default function App() {
 
   useEffect(() => {
     const fetchGames = () => {
-      console.log("fetch games function");
-
       fetch(getSchedule(formattedDate))
         .then((res) => res.json())
         .then((data) => {

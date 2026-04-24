@@ -15,11 +15,16 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
         const status = game.status.detailedState;
         const gameTime = new Date(game.gameDate).toLocaleTimeString();
         const venue = game.venue.name;
-        const innings =
-          game.linescore && game.linescore.innings
-            ? game.linescore.innings
-            : [];
+        const innings = Array.from({ length: 9 }, (_, i) => {
+          return game.linescore?.innings?.[i] || {};
+        });
+        // const innings =
+        //   game.linescore && game.linescore.innings
+        //     ? game.linescore.innings
+        //     : [];
         const numInnings = Math.max(innings.length, 9);
+
+        console.log(innings);
 
         return (
           <li
@@ -71,8 +76,8 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                   <thead>
                     <tr>
                       <th></th>
-                      {innings.map((inning) => (
-                        <th key={inning.num}>{inning.num}</th>
+                      {innings.map((inning, index) => (
+                        <th key={index + 1}>{index + 1}</th>
                       ))}
                       <th>R</th>
                       <th>H</th>
@@ -83,12 +88,10 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                   <tbody>
                     {/* Away Team */}
                     <tr>
-                      <td className="team-cell">
-                        {game.linescore.teams.away.abbreviation}
-                      </td>
+                      <td className="team-cell">ABBR</td>
 
                       {innings.map((inning) => (
-                        <td key={inning.num}>{inning.away?.runs ?? ""}</td>
+                        <td key={inning.num}>{inning.away?.runs}</td>
                       ))}
 
                       <td className="bold">
@@ -105,7 +108,7 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                       </td>
 
                       {innings.map((inning) => (
-                        <td key={inning.num}>{inning.home?.runs ?? ""}</td>
+                        <td key={inning.num}>{inning.home?.runs}</td>
                       ))}
 
                       <td className="bold">
