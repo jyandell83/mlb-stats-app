@@ -18,13 +18,7 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
         const innings = Array.from({ length: 9 }, (_, i) => {
           return game.linescore?.innings?.[i] || {};
         });
-        // const innings =
-        //   game.linescore && game.linescore.innings
-        //     ? game.linescore.innings
-        //     : [];
         const numInnings = Math.max(innings.length, 9);
-
-        console.log(innings);
 
         return (
           <li
