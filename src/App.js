@@ -27,7 +27,7 @@ export default function App() {
         .then((data) => {
           const allGames = data.dates?.[0]?.games || [];
 
-          /*** new functions to clean up/ test tomorrow, getPriority and sortGames */
+          /*** can i refine this to float more interesting games? */
           const getPriority = (game) => {
             const state = game.status?.detailedState;
 
@@ -114,16 +114,16 @@ export default function App() {
       <Header />
 
       {games.length === 0 && <div>No games today.</div>}
-      <div className="flex">
-        <GameList
-          games={games}
-          setSelectedGamePk={setSelectedGamePk}
-          selectedGamePk={selectedGamePk}
-        />
+      <div className="flex flex-col">
         <GameDetail
           handlePlayerClick={handlePlayerClick}
           selectedGamePk={selectedGamePk}
           gameDetails={gameDetails}
+        />
+        <GameList
+          games={games}
+          setSelectedGamePk={setSelectedGamePk}
+          selectedGamePk={selectedGamePk}
         />
       </div>
     </div>
