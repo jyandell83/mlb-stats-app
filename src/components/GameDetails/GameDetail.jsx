@@ -3,7 +3,6 @@ export default function GameDetail({
   gameDetails,
   handlePlayerClick,
 }) {
-  console.log(gameDetails);
   return (
     <div>
       {selectedGamePk && gameDetails && (

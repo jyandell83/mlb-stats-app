@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# MLB Live Game Tracker
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A real-time baseball scoreboard application that displays live MLB games, detailed game data, and player statistics.
 
-## Available Scripts
+This project was built to explore working with live sports data, handling incomplete/streaming datasets, and creating a clean, interactive UI for rapidly updating information.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The MLB Live Game Tracker provides a streamlined way to follow daily games. Users can view all games happening today, drill into individual matchups, and explore player-level stats — all in a responsive interface powered by live data.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The app emphasizes clarity and usability, especially in scenarios where game data is incomplete or constantly updating (e.g. early innings, in-progress games).
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Version 1 Features
 
-### `npm run build`
+- **Daily Scoreboard**
+  - Displays all MLB games for the current day
+  - Automatically updates to reflect live game progress
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- **Game Details View**
+  - Expanded view for each game
+  - Inning-by-inning breakdown
+  - Key game information and context
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Player Stat Modals**
+  - Clickable player names
+  - Modal-based UI for quick stat access
+  - Avoids navigating away from the game view
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Live Data Handling**
+  - Gracefully handles partial/in-progress data
+  - Supports early, mid, and final game states
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Tech Stack
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **Frontend:** React
+- **Data Source:** MLB Stats API
+- **Styling:** CSS (custom)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Current Focus
 
-## Learn More
+This project is actively being developed and refined. Current efforts are focused on:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Improving UI consistency and visual polish
+- Enhancing data presentation (especially inning-by-inning views)
+- Making interactions feel faster and more intuitive
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
 
-### Code Splitting
+## Future Iterations
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Planned improvements and features include:
 
-### Analyzing the Bundle Size
+### UI / UX
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Team logos and improved visual identity
+- Mobile responsiveness and layout optimization
+- Better loading and empty states
 
-### Making a Progressive Web App
+### Data & Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- League leaders page (powered by a custom SQL database)
+- Advanced stat views and filtering
+- Game state indicators (live, final, delayed, etc.)
 
-### Advanced Configuration
+### Backend Expansion
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Introduce a Node.js + PostgreSQL backend
+- Store and query player statistics
+- Build custom leaderboards using SQL (e.g. home runs, batting average)
 
-### Deployment
+### Performance
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+- Optimize data fetching and refresh intervals
+- Reduce unnecessary re-renders
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Goals
+
+- Build a production-style frontend using real-time data
+- Practice handling incomplete and dynamic datasets
+- Expand into full-stack development with SQL and backend APIs
+- Create a portfolio project that demonstrates both UI and data handling skills
+
+---
+
+## Status
+
+🚧 In active development — new features and improvements are continuously being added.
+
+---
+
+## Getting Started
+
+```bash
+git clone <your-repo-url>
+cd <project-folder>
+npm install
+npm start
+```
+
+---
+
+## Notes
+
+This project is not affiliated with or endorsed by Major League Baseball. Data is provided via the MLB Stats API.
+
+---
