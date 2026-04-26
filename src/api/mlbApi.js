@@ -4,6 +4,7 @@ const LIVE_BASE_URL = "https://statsapi.mlb.com/api/v1.1";
 
 const today = new Date();
 const formattedDate = today.toLocaleDateString("en-CA");
+// const formattedDate = "2026-04-24";
 
 /**
  *  Get schedule + basic game data for a specific date

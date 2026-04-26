@@ -15,7 +15,7 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
         const status = game.status.detailedState;
         const gameTime = new Date(game.gameDate).toLocaleTimeString();
         const venue = game.venue.name;
-        const numInnings = Math.max(game.linescore.innings.length, 9);
+        const numInnings = Math.max(game.linescore?.innings.length || 0, 9);
         const innings = Array.from({ length: numInnings }, (_, i) => {
           return game.linescore?.innings?.[i] || {};
         });
@@ -89,10 +89,10 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                       ))}
 
                       <td className="bold">
-                        {game.linescore.teams.away?.runs ?? "-"}
+                        {game.linescore?.teams.away?.runs ?? "-"}
                       </td>
-                      <td>{game.linescore.teams.away?.hits ?? "-"}</td>
-                      <td>{game.linescore.teams.away?.errors ?? "-"}</td>
+                      <td>{game.linescore?.teams.away?.hits ?? "-"}</td>
+                      <td>{game.linescore?.teams.away?.errors ?? "-"}</td>
                     </tr>
 
                     {/* Home Team */}
@@ -106,10 +106,10 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
                       ))}
 
                       <td className="bold">
-                        {game.linescore.teams.home?.runs ?? "-"}
+                        {game.linescore?.teams.home?.runs ?? "-"}
                       </td>
-                      <td>{game.linescore.teams.home?.hits ?? "-"}</td>
-                      <td>{game.linescore.teams.home?.errors ?? "-"}</td>
+                      <td>{game.linescore?.teams.home?.hits ?? "-"}</td>
+                      <td>{game.linescore?.teams.home?.errors ?? "-"}</td>
                     </tr>
                   </tbody>
                 </table>
