@@ -9,8 +9,12 @@ import GameDetail from "../GameDetails/GameDetail";
 const GameCard = ({ game, innings, handlePlayerClick }) => {
   const [gameDetails, setGameDetails] = useState(null);
   const gamePk = game.gamePk;
+  const state = gameDetails?.gameData?.status?.abstractGameState;
+
+  const showDetails = state === "Live" || state === "Final";
 
   useEffect(() => {
+    if (state !== "Live") return;
     const fetchDetails = () => {
       fetch(getLiveGameFeed(gamePk))
         .then((res) => res.json())
@@ -21,11 +25,7 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
     const interval = setInterval(fetchDetails, 15000);
 
     return () => clearInterval(interval);
-  }, [gamePk]);
-
-  const state = gameDetails?.gameData?.status?.abstractGameState;
-
-  const showDetails = state === "Live" || state === "Final";
+  }, [gamePk, state]);
 
   return (
     <>
