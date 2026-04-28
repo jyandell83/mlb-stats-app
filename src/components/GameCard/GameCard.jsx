@@ -27,7 +27,7 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
     <>
       <GameHeader game={game} />
 
-      <InningTable innings={innings} game={game} />
+      <InningTable innings={innings} game={game} gameDetails={gameDetails} />
 
       <GameDetail
         selectedGamePk={game.gamePk}

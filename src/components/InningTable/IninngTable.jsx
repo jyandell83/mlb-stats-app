@@ -1,4 +1,5 @@
-const InningTable = ({ innings, game }) => {
+const InningTable = ({ innings, game, gameDetails }) => {
+  console.log(gameDetails);
   return (
     <div>
       <div className="inning-table-wrapper">
@@ -18,7 +19,9 @@ const InningTable = ({ innings, game }) => {
           <tbody>
             {/* Away Team */}
             <tr>
-              <td className="team-cell">ABBR</td>
+              <td className="team-cell">
+                {gameDetails.gameData.teams.away.abbreviation}
+              </td>
 
               {innings.map((inning) => (
                 <td key={inning.num}>{inning.away?.runs}</td>
@@ -33,7 +36,9 @@ const InningTable = ({ innings, game }) => {
 
             {/* Home Team */}
             <tr>
-              <td className="team-cell">{game.teams.home.abbreviation}</td>
+              <td className="team-cell">
+                {gameDetails.gameData.teams.home.abbreviation}
+              </td>
 
               {innings.map((inning) => (
                 <td key={inning.num}>{inning.home?.runs}</td>
