@@ -31,12 +31,13 @@ export default function GameDetail({
                     className="text-button"
                     onClick={() =>
                       handlePlayerClick(
-                        gameDetails.liveData.linescore.defense.pitcher.fullName,
-                        gameDetails.liveData.linescore.defense.pitcher.id,
+                        gameDetails.liveData.linescore.defense.pitcher
+                          ?.fullName,
+                        gameDetails.liveData.linescore.defense.pitcher?.id,
                       )
                     }
                   >
-                    {gameDetails.liveData.linescore.defense.pitcher.fullName}
+                    {gameDetails.liveData.linescore.defense.pitcher?.fullName}
                   </button>
                   P: *Pitch count*
                 </div>
@@ -50,12 +51,12 @@ export default function GameDetail({
                   className="text-button"
                   onClick={() =>
                     handlePlayerClick(
-                      gameDetails.liveData.linescore.offense.batter.fullName,
-                      gameDetails.liveData.linescore.offense.batter.id,
+                      gameDetails.liveData.linescore.offense.batter?.fullName,
+                      gameDetails.liveData.linescore.offense.batter?.id,
                     )
                   }
                 >
-                  {gameDetails.liveData.linescore.offense.batter.fullName}
+                  {gameDetails.liveData.linescore.offense.batter?.fullName}
                 </button>
               </div>
             </div>
@@ -63,16 +64,18 @@ export default function GameDetail({
 
           <div className="flex flex-col">
             <h3>Top Performers</h3>
-            {gameDetails.liveData.boxscore.topPerformers.map((topPerformer) => {
-              return (
-                <div>
-                  <span>{topPerformer.player.person.fullName}</span>
-                  {topPerformer.type === "hitter"
-                    ? topPerformer.player.stats.batting.summary
-                    : topPerformer.player.stats.pitching.summary}
-                </div>
-              );
-            })}
+            {gameDetails.liveData.boxscore.topPerformers?.map(
+              (topPerformer) => {
+                return (
+                  <div>
+                    <span>{topPerformer.player.person.fullName}</span>
+                    {topPerformer.type === "hitter"
+                      ? topPerformer.player.stats.batting.summary
+                      : topPerformer.player.stats.pitching.summary}
+                  </div>
+                );
+              },
+            )}
           </div>
         </div>
       )}

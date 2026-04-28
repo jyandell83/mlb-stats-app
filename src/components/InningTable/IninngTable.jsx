@@ -20,7 +20,7 @@ const InningTable = ({ innings, game, gameDetails }) => {
             {/* Away Team */}
             <tr>
               <td className="team-cell">
-                {gameDetails.gameData.teams.away.abbreviation}
+                {gameDetails?.gameData?.teams.away.abbreviation}
               </td>
 
               {innings.map((inning) => (
@@ -37,7 +37,7 @@ const InningTable = ({ innings, game, gameDetails }) => {
             {/* Home Team */}
             <tr>
               <td className="team-cell">
-                {gameDetails.gameData.teams.home.abbreviation}
+                {gameDetails?.gameData?.teams.home.abbreviation}
               </td>
 
               {innings.map((inning) => (

@@ -23,17 +23,29 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
     return () => clearInterval(interval);
   }, [gamePk]);
 
+  const state = gameDetails?.gameData?.status?.abstractGameState;
+
+  const showDetails = state === "Live" || state === "Final";
+
   return (
     <>
       <GameHeader game={game} />
 
-      <InningTable innings={innings} game={game} gameDetails={gameDetails} />
+      {showDetails && (
+        <>
+          <InningTable
+            innings={innings}
+            game={game}
+            gameDetails={gameDetails}
+          />
 
-      <GameDetail
-        selectedGamePk={game.gamePk}
-        gameDetails={gameDetails}
-        handlePlayerClick={handlePlayerClick}
-      />
+          <GameDetail
+            selectedGamePk={game.gamePk}
+            gameDetails={gameDetails}
+            handlePlayerClick={handlePlayerClick}
+          />
+        </>
+      )}
     </>
   );
 };
