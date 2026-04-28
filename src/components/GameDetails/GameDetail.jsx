@@ -67,7 +67,7 @@ export default function GameDetail({
               return (
                 <div>
                   <span>{topPerformer.player.person.fullName}</span>
-                  {topPerformer.type == "hitter"
+                  {topPerformer.type === "hitter"
                     ? topPerformer.player.stats.batting.summary
                     : topPerformer.player.stats.pitching.summary}
                 </div>

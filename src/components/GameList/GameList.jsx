@@ -1,6 +1,11 @@
 import GameCard from "../GameCard/GameCard";
 
-export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
+export default function GameList({
+  games,
+  setSelectedGamePk,
+  selectedGamePk,
+  handlePlayerClick,
+}) {
   return (
     <ul className="gameList">
       {games.map((game) => {
@@ -19,7 +24,11 @@ export default function GameList({ games, setSelectedGamePk, selectedGamePk }) {
               setSelectedGamePk(game.gamePk);
             }}
           >
-            <GameCard game={game} innings={innings} />
+            <GameCard
+              game={game}
+              innings={innings}
+              handlePlayerClick={handlePlayerClick}
+            />
           </li>
         );
       })}

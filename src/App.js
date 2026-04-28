@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 
-import { getSchedule, getLiveGameFeed } from "./api/mlbApi";
+import { getSchedule } from "./api/mlbApi";
 
 import Header from "./components/Header/Header";
 import GameList from "./components/GameList/GameList";
-import GameDetail from "./components/GameDetails/GameDetail";
 import PlayerModal from "./components/PlayerModal/PlayerModal";
 
 export default function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedGamePk, setSelectedGamePk] = useState(null);
-  const [gameDetails, setGameDetails] = useState(null);
   const [highlightId, setHighlightId] = useState(null);
   const [playerModalOpen, setPlayerModalOpen] = useState(false);
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
@@ -75,21 +73,6 @@ export default function App() {
     return () => clearInterval(interval);
   }, [formattedDate]);
 
-  useEffect(() => {
-    if (!selectedGamePk) return;
-
-    const fetchDetails = () => {
-      fetch(getLiveGameFeed(selectedGamePk))
-        .then((res) => res.json())
-        .then(setGameDetails);
-    };
-
-    fetchDetails();
-    const interval = setInterval(fetchDetails, 15000);
-
-    return () => clearInterval(interval);
-  }, [selectedGamePk]);
-
   if (loading) {
     return <div className="loading">Loading games...</div>;
   }
@@ -115,15 +98,11 @@ export default function App() {
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex flex-col">
-        <GameDetail
-          handlePlayerClick={handlePlayerClick}
-          selectedGamePk={selectedGamePk}
-          gameDetails={gameDetails}
-        />
         <GameList
           games={games}
           setSelectedGamePk={setSelectedGamePk}
           selectedGamePk={selectedGamePk}
+          handlePlayerClick={handlePlayerClick}
         />
       </div>
     </div>
