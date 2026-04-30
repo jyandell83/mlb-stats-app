@@ -1,8 +1,10 @@
+import "./InningTable.css";
+
 const InningTable = ({ innings, game, gameDetails }) => {
   return (
     <div>
       <div className="inning-table-wrapper">
-        <table className="inning-table w-full">
+        <table className="inning-table">
           <thead>
             <tr>
               <th></th>
@@ -26,7 +28,7 @@ const InningTable = ({ innings, game, gameDetails }) => {
                 <td key={inning.num}>{inning.away?.runs}</td>
               ))}
 
-              <td className="bold">
+              <td className="bold total-cell">
                 {game.linescore?.teams.away?.runs ?? "-"}
               </td>
               <td>{game.linescore?.teams.away?.hits ?? "-"}</td>
@@ -43,7 +45,7 @@ const InningTable = ({ innings, game, gameDetails }) => {
                 <td key={inning.num}>{inning.home?.runs}</td>
               ))}
 
-              <td className="bold">
+              <td className="bold total-cell">
                 {game.linescore?.teams.home?.runs ?? "-"}
               </td>
               <td>{game.linescore?.teams.home?.hits ?? "-"}</td>

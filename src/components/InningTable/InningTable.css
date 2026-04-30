@@ -1,0 +1,49 @@
+.inning-table-wrapper {
+  margin: 10px;
+}
+
+.inning-table {
+  width: 100%;
+  border: 1px solid var(--primary);
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+  border-radius: 5px;
+}
+
+.inning-table tbody tr:nth-child(even) {
+  background: #f6f6f6;
+}
+
+.inning-table th,
+.inning-table td {
+  padding: 0.5rem;
+  text-align: center;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+
+.inning-table th:last-child,
+.inning-table td:last-child {
+  border-right: none;
+}
+
+.inning-table tr:last-child td {
+  border-bottom: none;
+}
+
+.inning-table th {
+  font-weight: 700;
+}
+
+.inning-table .team-cell {
+  text-align: left;
+  font-weight: 600;
+  position: sticky;
+  left: 0;
+  background: white;
+}
+.inning-table .total-cell {
+  font-weight: 700;
+  background: #eee;
+}

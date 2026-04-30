@@ -6,12 +6,14 @@ export default function GameDetail({
   return (
     <div>
       {selectedGamePk && gameDetails && (
-        <div className="details flex justify-between">
-          <div className="">
+        <div>
+          <div>
+            {gameDetails.liveData.plays.currentPlay?.result?.description ??
+              "No play yet"}
+          </div>
+          <div className="details flex justify-between">
             <div>
               {/* {selectedGamePk} uncomment to troubleshoot gamepk*/}
-              {gameDetails.liveData.linescore.inningState}{" "}
-              {gameDetails.liveData.linescore.currentInning}
               <div>{`${gameDetails.liveData.linescore.outs} Out`}</div>
               <div>
                 Count:{" "}
@@ -19,10 +21,6 @@ export default function GameDetail({
               </div>
             </div>
 
-            <div>
-              {gameDetails.liveData.plays.currentPlay?.result?.description ??
-                "No play yet"}
-            </div>
             <div className="flex justify-evenly">
               <div>
                 <div>
@@ -60,22 +58,22 @@ export default function GameDetail({
                 </button>
               </div>
             </div>
-          </div>
 
-          <div className="flex flex-col">
-            <h3>Top Performers</h3>
-            {gameDetails.liveData.boxscore.topPerformers?.map(
-              (topPerformer) => {
-                return (
-                  <div>
-                    <span>{topPerformer.player.person.fullName}</span>
-                    {topPerformer.type === "hitter"
-                      ? topPerformer.player.stats.batting.summary
-                      : topPerformer.player.stats.pitching.summary}
-                  </div>
-                );
-              },
-            )}
+            <div className="flex flex-col">
+              <h3>Top Performers</h3>
+              {gameDetails.liveData.boxscore.topPerformers?.map(
+                (topPerformer) => {
+                  return (
+                    <div>
+                      <span>{topPerformer.player.person.fullName}</span>
+                      {topPerformer.type === "hitter"
+                        ? topPerformer.player.stats.batting.summary
+                        : topPerformer.player.stats.pitching.summary}
+                    </div>
+                  );
+                },
+              )}
+            </div>
           </div>
         </div>
       )}
