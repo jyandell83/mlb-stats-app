@@ -1,5 +1,4 @@
 const InningTable = ({ innings, game, gameDetails }) => {
-  console.log(gameDetails);
   return (
     <div>
       <div className="inning-table-wrapper">

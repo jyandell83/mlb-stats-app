@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { getLiveGameFeed } from "./../../api/mlbApi.js";
 
 import GameHeader from "../GameHeader/GameHeader";
-import InningTable from "../InningTable/IninngTable";
+import InningTable from "../InningTable/InningTable";
 import GameDetail from "../GameDetails/GameDetail";
 
 const GameCard = ({ game, innings, handlePlayerClick }) => {
@@ -14,7 +14,6 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
   const showDetails = state === "Live" || state === "Final";
 
   useEffect(() => {
-    if (state !== "Live") return;
     const fetchDetails = () => {
       fetch(getLiveGameFeed(gamePk))
         .then((res) => res.json())
@@ -25,7 +24,7 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
     const interval = setInterval(fetchDetails, 15000);
 
     return () => clearInterval(interval);
-  }, [gamePk, state]);
+  }, [gamePk]);
 
   return (
     <>

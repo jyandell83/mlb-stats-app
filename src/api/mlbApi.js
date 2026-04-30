@@ -13,7 +13,6 @@ const formattedDate = today.toLocaleDateString("en-CA");
  * - Use for main game list / scoreboard
  */
 
-//NOTE: hardcoding date for now to make dev easier, to be variable eventually
 export const getSchedule = (date) =>
   `${BASE_URL}/schedule?sportId=1&date=${formattedDate}&hydrate=linescore`;
 
@@ -67,7 +66,7 @@ export const getTeamRoster = (teamId) => `${BASE_URL}/teams/${teamId}/roster`;
 export const getTeamStats = (teamId) => `${BASE_URL}/teams/${teamId}/stats`;
 
 /**
- * 🏆 Get league standings
+ * Get league standings
  * - Divisions, wins/losses, rankings
  */
 export const getStandings = () => `${BASE_URL}/standings`;
