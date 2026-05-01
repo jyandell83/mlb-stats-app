@@ -1,6 +1,6 @@
 export default function Header() {
   const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-CA");
+
   return (
     <h1 className="title">
       MLB Games -{" "}

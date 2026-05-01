@@ -10,7 +10,6 @@ export default function App() {
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedGamePk, setSelectedGamePk] = useState(null);
-  const [highlightId, setHighlightId] = useState(null);
   const [playerModalOpen, setPlayerModalOpen] = useState(false);
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
   const [selectedPlayerName, setSelectedPlayerName] = useState(null);
@@ -48,14 +47,7 @@ export default function App() {
             });
           };
           setGames(sortGames(allGames));
-          //just setting first game to highlight, eventually intention is to flash when score changes
-          if (allGames.length > 0) {
-            setHighlightId(allGames[0].gamePk);
 
-            setTimeout(() => {
-              setHighlightId(null);
-            }, 1000);
-          }
           setLoading(false);
         })
         .catch((err) => {
