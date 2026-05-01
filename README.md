@@ -1,5 +1,7 @@
 # MLB Live Game Tracker
 
+Live Demo: https://live-mlb-dashboard.vercel.app/
+
 A real-time baseball scoreboard application that displays live MLB games, detailed game data, and player statistics.
 
 This project was built to explore working with live sports data, handling incomplete/streaming datasets, and creating a clean, interactive UI for rapidly updating information.
