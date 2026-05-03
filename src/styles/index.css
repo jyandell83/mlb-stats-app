@@ -11,6 +11,11 @@ th {
   text-align: left;
 }
 
+h3 {
+  margin: 0;
+  padding: 0;
+}
+
 .btn {
   background: var(--primary);
   color: white;

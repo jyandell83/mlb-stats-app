@@ -21,7 +21,7 @@ export default function GameDetail({
               </div>
             </div>
 
-            <div className="flex justify-evenly">
+            <div className="flex justify-evenly flex-col">
               <div>
                 <div>
                   <div>On the mound</div>
