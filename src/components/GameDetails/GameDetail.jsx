@@ -37,7 +37,7 @@ export default function GameDetail({
                   >
                     {gameDetails.liveData.linescore.defense.pitcher?.fullName}
                   </button>
-                  P: *Pitch count*
+                  <span> P: *Pitch count*</span>
                 </div>
               </div>
               <div>
@@ -65,7 +65,7 @@ export default function GameDetail({
                 (topPerformer) => {
                   return (
                     <div>
-                      <span>{topPerformer.player.person.fullName}</span>
+                      <span>{`${topPerformer.player.person.fullName} `}</span>
                       {topPerformer.type === "hitter"
                         ? topPerformer.player.stats.batting.summary
                         : topPerformer.player.stats.pitching.summary}
