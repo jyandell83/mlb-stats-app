@@ -7,19 +7,25 @@ import GameList from "./components/GameList/GameList";
 import PlayerModal from "./components/PlayerModal/PlayerModal";
 
 export default function App() {
+  const today = new Date();
+  const formattedDate = today.toLocaleDateString("en-CA");
+
+  const yesterday = new Date(today);
+  yesterday.setDate(today.getDate() - 1);
+
+  const formattedYesterday = yesterday.toLocaleDateString("en-CA");
+
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedGamePk, setSelectedGamePk] = useState(null);
   const [playerModalOpen, setPlayerModalOpen] = useState(false);
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
   const [selectedPlayerName, setSelectedPlayerName] = useState(null);
-
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-CA");
+  const [currentDate, setCurrentDate] = useState(formattedDate);
 
   useEffect(() => {
     const fetchGames = () => {
-      fetch(getSchedule(formattedDate))
+      fetch(getSchedule(currentDate))
         .then((res) => res.json())
         .then((data) => {
           const allGames = data.dates?.[0]?.games || [];
@@ -63,7 +69,7 @@ export default function App() {
     const interval = setInterval(fetchGames, 30000);
 
     return () => clearInterval(interval);
-  }, [formattedDate]);
+  }, [currentDate]);
 
   if (loading) {
     return <div className="loading">Loading games...</div>;
@@ -73,6 +79,11 @@ export default function App() {
     setSelectedPlayerId(playerId);
     setSelectedPlayerName(playerName);
     setPlayerModalOpen(true);
+  };
+
+  const handleDateChange = (e) => {
+    const value = e.target.value;
+    setCurrentDate(value);
   };
 
   return (
@@ -86,7 +97,11 @@ export default function App() {
           />
         )}
       </div>
-      <Header />
+      <select value={currentDate} onChange={handleDateChange}>
+        <option value={formattedDate}>Today</option>
+        <option value={formattedYesterday}>Yesterday</option>
+      </select>
+      <Header date={currentDate} />
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex flex-col">

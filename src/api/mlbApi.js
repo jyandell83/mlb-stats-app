@@ -2,9 +2,9 @@
 const BASE_URL = "https://statsapi.mlb.com/api/v1";
 const LIVE_BASE_URL = "https://statsapi.mlb.com/api/v1.1";
 
-const today = new Date();
+// const today = new Date();
 // const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-const formattedDate = today.toLocaleDateString("en-CA");
+// const formattedDate = today.toLocaleDateString("en-CA");
 // const formattedDate = "2026-04-24";
 
 /**
@@ -14,7 +14,7 @@ const formattedDate = today.toLocaleDateString("en-CA");
  */
 
 export const getSchedule = (date) =>
-  `${BASE_URL}/schedule?sportId=1&date=${formattedDate}&hydrate=linescore`;
+  `${BASE_URL}/schedule?sportId=1&date=${date}&hydrate=linescore`;
 
 /**
  *  Get full live game data (VERY detailed)
