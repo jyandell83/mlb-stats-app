@@ -53,6 +53,10 @@ export default function GameList({
           </option>
         ))}
       </select>
+
+      <button type="button" onClick={() => setSelectedTeams([])}>
+        Reset Filter
+      </button>
       <ul className="gameList">
         {filteredGames.map((game) => {
           const numInnings = Math.max(game.linescore?.innings.length || 0, 9);
