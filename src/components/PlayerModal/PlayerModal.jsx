@@ -13,6 +13,8 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
       .then(setPlayerDetails);
   }, [playerId]);
 
+  console.log(playerDetails);
+
   const stats = playerDetails?.stats?.[0]?.splits?.[0]?.stat;
   const isPitcher =
     playerDetails?.stats?.[0]?.group?.displayName === "pitching";
