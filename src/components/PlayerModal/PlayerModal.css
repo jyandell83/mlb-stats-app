@@ -1,0 +1,31 @@
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stats-table th,
+.stats-table td {
+  padding: 0.85rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.stats-table th {
+  background: #f3f4f6;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.stats-table tbody tr:hover {
+  background: #f9fafb;
+}
+
+.stats-table tbody tr:last-child td {
+  border-bottom: none;
+}

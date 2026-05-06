@@ -54,7 +54,11 @@ export default function GameList({
         ))}
       </select>
 
-      <button type="button" onClick={() => setSelectedTeams([])}>
+      <button
+        className="btn"
+        type="button"
+        onClick={() => setSelectedTeams([])}
+      >
         Reset Filter
       </button>
       <ul className="gameList">

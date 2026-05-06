@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { getPlayerStats } from "../../api/mlbApi";
 
+import "./PlayerModal.css";
+
 export default function PlayerModal({ onClose, playerId, playerName }) {
   const [playerDetails, setPlayerDetails] = useState(null);
 
@@ -26,7 +28,17 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <h2>{playerName}</h2>
+        <div className="modal-header">
+          <h2 className="title">{playerName}</h2>
+
+          <button
+            className="btn modal-close-x"
+            onClick={onClose}
+            aria-label="Close modal"
+          >
+            ×
+          </button>
+        </div>
         <div>
           {isPitcher ? (
             <div className="pitcher-stats">
@@ -34,6 +46,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
               <table className="stats-table">
                 <thead>
                   <tr>
+                    <th></th>
                     <th>W</th>
                     <th>L</th>
                     <th>ERA</th>
@@ -51,6 +64,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
                 </thead>
                 <tbody>
                   <tr>
+                    <td>Season</td>
                     <td>{stats?.wins}</td>
                     <td>{stats?.losses}</td>
                     <td>{stats?.era}</td>
@@ -72,6 +86,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
             <table className="stats-table">
               <thead>
                 <tr>
+                  <th></th>
                   <th>AVG</th>
                   <th>G</th>
                   <th>AB</th>
@@ -91,6 +106,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
               </thead>
               <tbody>
                 <tr>
+                  <td>Season</td>
                   <td>{stats?.avg}</td>
                   <td>{stats?.gamesPlayed}</td>
                   <td>{stats?.atBats}</td>
@@ -112,7 +128,11 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
           )}
         </div>
 
-        <button onClick={onClose}>Close</button>
+        <div className="modal-footer">
+          <button className="btn" onClick={onClose}>
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
