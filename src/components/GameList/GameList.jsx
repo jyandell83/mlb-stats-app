@@ -39,28 +39,37 @@ export default function GameList({
 
   return (
     <>
-      <label htmlFor="teamFilter">Filter by team</label>
+      <div className="team-filter">
+        <div className="team-filter-group">
+          <div>
+            <label htmlFor="teamFilter">Filter by team</label>
 
-      <select
-        id="teamFilter"
-        multiple
-        value={selectedTeams}
-        onChange={handleTeamChange}
-      >
-        {teamNames.map((team) => (
-          <option key={team} value={team}>
-            {team}
-          </option>
-        ))}
-      </select>
+            <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
+          </div>
 
-      <button
-        className="btn"
-        type="button"
-        onClick={() => setSelectedTeams([])}
-      >
-        Reset Filter
-      </button>
+          <select
+            id="teamFilter"
+            multiple
+            value={selectedTeams}
+            onChange={handleTeamChange}
+          >
+            {teamNames.map((team) => (
+              <option key={team} value={team}>
+                {team}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button
+          className="btn"
+          type="button"
+          onClick={() => setSelectedTeams([])}
+        >
+          Reset Filter
+        </button>
+      </div>
+
       <ul className="gameList">
         {filteredGames.map((game) => {
           const numInnings = Math.max(game.linescore?.innings.length || 0, 9);

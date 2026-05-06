@@ -192,3 +192,63 @@ h3 {
 .text-button:hover {
   text-decoration: underline;
 }
+
+.team-filter {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+
+  padding: 1rem;
+  margin: 1rem 0;
+
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+}
+
+.team-filter-group {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.team-filter label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.team-filter select {
+  width: 220px;
+  min-height: 90px;
+  height: 90px;
+  padding: 0.5rem;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+
+  background: white;
+  color: #111827;
+
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.team-filter select:focus {
+  outline: 3px solid rgba(59, 130, 246, 0.3);
+  border-color: #3b82f6;
+}
+
+.team-filter option {
+  padding: 0.45rem 0.6rem;
+}
+
+.filter-hint {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin: 0;
+}
+
+.team-filter .btn {
+  height: fit-content;
+  margin-left: auto;
+}
