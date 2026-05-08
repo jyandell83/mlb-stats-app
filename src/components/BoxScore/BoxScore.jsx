@@ -20,10 +20,29 @@ const BoxScore = ({ gamePk }) => {
     fetchBoxscore();
   }, [gamePk]);
 
+  const awayLineup = Object.values(boxScore?.teams?.away?.players || {})
+    .filter((player) => player.battingOrder)
+    .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder));
+
+  const homeLineup = Object.values(boxScore?.teams?.home?.players || {})
+    .filter((player) => player.battingOrder)
+    .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder));
+
   return (
-    <div>
-      {boxScore?.teams?.away.team.name}
-      {gamePk}
+    <div className="flex justify-evenly">
+      <div>
+        <div>{boxScore?.teams?.away.team.name}</div>
+        {awayLineup.map((player) => (
+          <div key={player.person.id}>{player.person.fullName}</div>
+        ))}
+      </div>
+
+      <div>
+        <div>{boxScore?.teams?.home.team.name}</div>
+        {homeLineup.map((player) => (
+          <div key={player.person.id}>{player.person.fullName}</div>
+        ))}
+      </div>
     </div>
   );
 };
