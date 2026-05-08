@@ -9,14 +9,20 @@ import GameDetail from "../GameDetails/GameDetail";
 const GameCard = ({ game, innings, handlePlayerClick }) => {
   const [gameDetails, setGameDetails] = useState(null);
   const [showLiveFeed, setShowLiveFeed] = useState(false);
+  const [showRecap, setShowRecap] = useState(false);
 
   const gamePk = game.gamePk;
   const state = gameDetails?.gameData?.status?.abstractGameState;
 
-  const showDetails = state === "Live" || state === "Final";
+  const showDetails = state === "Live";
+  const showRecapButton = state === "Final";
 
   const handleShowDetailsClick = () => {
     setShowLiveFeed(!showLiveFeed);
+  };
+
+  const handleShowRecapClick = () => {
+    setShowRecap(!showRecap);
   };
 
   useEffect(() => {
@@ -43,6 +49,14 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
             className="text-button"
           >
             {showLiveFeed ? "Hide " : "Show "} Details
+          </button>
+        )}
+        {showRecapButton && (
+          <button
+            className="text-button"
+            onClick={() => handleShowRecapClick()}
+          >
+            {showRecap ? "Hide " : "Show "} Recap
           </button>
         )}
       </div>
