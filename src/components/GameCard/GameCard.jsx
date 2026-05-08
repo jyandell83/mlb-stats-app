@@ -5,7 +5,7 @@ import { getLiveGameFeed } from "./../../api/mlbApi.js";
 import GameHeader from "../GameHeader/GameHeader";
 import InningTable from "../InningTable/InningTable";
 import GameDetail from "../GameDetails/GameDetail";
-import BoxScore from "../BoxScore/BoxScore.jsx";
+import BoxScore from "../BoxScore/BoxScore";
 
 const GameCard = ({ game, innings, handlePlayerClick }) => {
   const [gameDetails, setGameDetails] = useState(null);
