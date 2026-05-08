@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { getBoxscore } from "../../api/mlbApi";
 
-const BoxScore = ({ gamePk }) => {
+const BoxScore = ({ gamePk, handlePlayerClick }) => {
   const [boxScore, setBoxScore] = useState(null);
   useEffect(() => {
     const fetchBoxscore = async () => {
@@ -48,7 +48,19 @@ const BoxScore = ({ gamePk }) => {
           <tbody>
             {awayLineup.map((player) => (
               <tr key={player.person.id}>
-                <td>{`${player.person.boxscoreName} (${player.position.abbreviation})`}</td>
+                <td>
+                  <button
+                    className="text-button"
+                    onClick={() =>
+                      handlePlayerClick(
+                        player.person.fullName,
+                        player.person.id,
+                      )
+                    }
+                  >
+                    {`${player.person.boxscoreName} (${player.position.abbreviation})`}
+                  </button>
+                </td>
                 <td>{player.stats?.batting?.atBats ?? "-"}</td>
                 <td>{player.stats?.batting?.runs ?? "-"}</td>
                 <td>{player.stats?.batting?.hits ?? "-"}</td>
@@ -79,7 +91,19 @@ const BoxScore = ({ gamePk }) => {
           <tbody>
             {homeLineup.map((player) => (
               <tr key={player.person.id}>
-                <td>{`${player.person.boxscoreName} (${player.position.abbreviation})`}</td>
+                <td>
+                  <button
+                    className="text-button"
+                    onClick={() =>
+                      handlePlayerClick(
+                        player.person.fullName,
+                        player.person.id,
+                      )
+                    }
+                  >
+                    {`${player.person.boxscoreName} (${player.position.abbreviation})`}
+                  </button>
+                </td>
                 <td>{player.stats?.batting?.atBats ?? "-"}</td>
                 <td>{player.stats?.batting?.runs ?? "-"}</td>
                 <td>{player.stats?.batting?.hits ?? "-"}</td>

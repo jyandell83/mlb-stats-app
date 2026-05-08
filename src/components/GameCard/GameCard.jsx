@@ -85,7 +85,10 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
             game={game}
             gameDetails={gameDetails}
           />
-          <BoxScore gamePk={game.gamePk} />
+          <BoxScore
+            gamePk={game.gamePk}
+            handlePlayerClick={handlePlayerClick}
+          />
         </>
       )}
     </>
