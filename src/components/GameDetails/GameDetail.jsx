@@ -37,7 +37,7 @@ export default function GameDetail({
                   >
                     {gameDetails.liveData.linescore.defense.pitcher?.fullName}
                   </button>
-                  <span> P: *Pitch count*</span>
+                  {/* <span> P: *Pitch count*</span> */}
                 </div>
               </div>
               <div>

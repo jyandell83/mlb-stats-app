@@ -14,7 +14,7 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
   const gamePk = game.gamePk;
   const state = gameDetails?.gameData?.status?.abstractGameState;
 
-  const showDetails = state === "Live";
+  const showLiveFeedButton = state === "Live";
   const showRecapButton = state === "Final";
 
   const handleShowDetailsClick = () => {
@@ -43,12 +43,12 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
       <GameHeader game={game} />
 
       <div className=" flex justify-flex-end">
-        {showDetails && (
+        {showLiveFeedButton && (
           <button
             onClick={() => handleShowDetailsClick()}
             className="text-button"
           >
-            {showLiveFeed ? "Hide " : "Show "} Details
+            {showLiveFeed ? "Hide " : "Show "} Live Feed
           </button>
         )}
         {showRecapButton && (
@@ -74,6 +74,17 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
             gameDetails={gameDetails}
             handlePlayerClick={handlePlayerClick}
           />
+        </>
+      )}
+
+      {showRecap && (
+        <>
+          <InningTable
+            innings={innings}
+            game={game}
+            gameDetails={gameDetails}
+          />
+          <div>BOX SCORE</div>
         </>
       )}
     </>

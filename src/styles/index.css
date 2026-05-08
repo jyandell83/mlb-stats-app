@@ -185,8 +185,8 @@ h3 {
   color: var(--accent);
   font: inherit;
   cursor: pointer;
-  text-decoration: none;
   width: fit-content;
+  text-decoration: none;
 }
 
 .text-button:hover {
