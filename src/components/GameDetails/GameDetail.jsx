@@ -1,3 +1,5 @@
+//TODO: This component 100% needs an indicator of men on base
+
 export default function GameDetail({
   selectedGamePk,
   gameDetails,

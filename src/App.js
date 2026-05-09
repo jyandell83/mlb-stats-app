@@ -30,7 +30,7 @@ export default function App() {
         .then((data) => {
           const allGames = data.dates?.[0]?.games || [];
 
-          /*** can i refine this to float more interesting games? */
+          /*** TODO: This is not sorting in the most interesting way, refactor sorting*/
           const getPriority = (game) => {
             const state = game.status?.detailedState;
 

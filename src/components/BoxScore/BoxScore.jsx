@@ -30,7 +30,7 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
 
   return (
     <div className="flex justify-evenly">
-      <div className="card">
+      <div className="box-score">
         <div>{boxScore?.teams?.away.team.name}</div>
         <table className="stats-table">
           <thead>
