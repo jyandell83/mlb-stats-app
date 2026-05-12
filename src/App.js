@@ -6,8 +6,6 @@ import Header from "./components/Header/Header";
 import GameList from "./components/GameList/GameList";
 import PlayerModal from "./components/PlayerModal/PlayerModal";
 
-import BaseDiamond from "./components/BaseDiamond/BaseDiamond";
-
 export default function App() {
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-CA");
@@ -103,14 +101,7 @@ export default function App() {
         <option value={formattedDate}>Today</option>
         <option value={formattedYesterday}>Yesterday</option>
       </select>
-      <BaseDiamond
-        bases={{
-          first: null,
-          second: "occupied",
-          third: "occupied",
-        }}
-        outs="1"
-      />
+
       <Header date={currentDate} />
 
       {games.length === 0 && <div>No games today.</div>}

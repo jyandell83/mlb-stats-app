@@ -6,6 +6,7 @@
   --accent: #c8102e;
   --font-family: "Inter", system-ui, sans-serif;
   --font-family-header: "Oswald", sans-serif;
+  --diamond-active: #f59e0b;
 }
 
 [data-theme="dark"] {

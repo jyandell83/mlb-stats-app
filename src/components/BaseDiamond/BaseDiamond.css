@@ -8,13 +8,19 @@
   position: absolute;
   width: 18px;
   height: 18px;
-  border: 2px solid #555;
+  border: 2px solid var(--text);
   transform: rotate(45deg);
-  background: white;
+  background: var(--card);
 }
 
 .base.occupied {
-  background: #f6c343;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.base.occupied {
+  background: var(--diamond-active);
+  border-color: var(--diamond-active);
 }
 
 .base-second {
@@ -45,10 +51,11 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  border: 1px solid #555;
-  background: white;
+  border: 1px solid var(--text);
+  background: transparent;
 }
 
 .out-light.active {
-  background: red;
+  background: var(--accent);
+  border-color: var(--accent);
 }
