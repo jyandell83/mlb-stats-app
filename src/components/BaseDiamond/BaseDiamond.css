@@ -1,0 +1,33 @@
+.base-diamond {
+  position: relative;
+  width: 72px;
+  height: 72px;
+}
+
+.base {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #555;
+  transform: rotate(45deg);
+  background: white;
+}
+
+.base.occupied {
+  background: #f6c343;
+}
+
+.base-second {
+  top: 4px;
+  left: 27px;
+}
+
+.base-third {
+  top: 27px;
+  left: 4px;
+}
+
+.base-first {
+  top: 27px;
+  right: 4px;
+}
