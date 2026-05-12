@@ -22,6 +22,8 @@ export default function App() {
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
   const [selectedPlayerName, setSelectedPlayerName] = useState(null);
   const [currentDate, setCurrentDate] = useState(formattedDate);
+  // TODO: Light/Dark theme needs work, didn't use variables everywhere
+  // const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     const fetchGames = () => {
@@ -86,6 +88,14 @@ export default function App() {
     setCurrentDate(value);
   };
 
+  // const toggleTheme = () => {
+  //   const newTheme = theme === "light" ? "dark" : "light";
+
+  //   setTheme(newTheme);
+
+  //   document.documentElement.setAttribute("data-theme", newTheme);
+  // };
+
   return (
     <div className="container">
       <div>
@@ -103,6 +113,9 @@ export default function App() {
       </select>
 
       <Header date={currentDate} />
+      {/* <button className="theme-toggle" onClick={toggleTheme}>
+        {theme === "dark" ? "☀️" : "🌙"}
+      </button> */}
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex flex-col">

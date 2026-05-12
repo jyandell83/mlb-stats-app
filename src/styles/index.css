@@ -252,3 +252,20 @@ h3 {
   height: fit-content;
   margin-left: auto;
 }
+
+.theme-toggle {
+  border: 1px solid var(--text);
+  background: var(--card);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.theme-toggle:hover {
+  opacity: 0.85;
+}
