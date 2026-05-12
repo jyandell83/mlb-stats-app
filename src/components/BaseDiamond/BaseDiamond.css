@@ -31,3 +31,24 @@
   top: 27px;
   right: 4px;
 }
+
+.outs-container {
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+}
+
+.out-light {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid #555;
+  background: white;
+}
+
+.out-light.active {
+  background: red;
+}

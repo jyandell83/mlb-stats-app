@@ -109,6 +109,7 @@ export default function App() {
           second: "occupied",
           third: "occupied",
         }}
+        outs="1"
       />
       <Header date={currentDate} />
 

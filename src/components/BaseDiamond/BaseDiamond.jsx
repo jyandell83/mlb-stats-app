@@ -1,6 +1,6 @@
 import "./BaseDiamond.css";
 
-const BaseDiamond = ({ bases = {} }) => {
+const BaseDiamond = ({ bases = {}, outs = 0 }) => {
   const { first, second, third } = bases;
 
   return (
@@ -17,6 +17,10 @@ const BaseDiamond = ({ bases = {} }) => {
         className={`base base-first ${first ? "occupied" : ""}`}
         title="First base"
       />
+      <div className="outs-container">
+        <div className={`out-light ${outs >= 1 ? "active" : ""}`} />
+        <div className={`out-light ${outs >= 2 ? "active" : ""}`} />
+      </div>
     </div>
   );
 };
