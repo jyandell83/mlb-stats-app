@@ -1,4 +1,4 @@
-import BaseDiamond from "../BaseDiamond/BaseDiamond";
+import BaseDiamond from "../BaseDiamond/BaseDiamond.jsx";
 
 export default function GameDetail({
   selectedGamePk,
