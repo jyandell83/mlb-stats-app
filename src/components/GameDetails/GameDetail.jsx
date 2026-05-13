@@ -13,14 +13,7 @@ export default function GameDetail({
             {gameDetails.liveData.plays.currentPlay?.result?.description ??
               "No play yet"}
           </div>
-          <BaseDiamond
-            bases={{
-              first: gameDetails?.liveData?.linescore?.offense?.first,
-              second: gameDetails?.liveData?.linescore?.offense?.second,
-              third: gameDetails?.liveData?.linescore?.offense?.third,
-            }}
-            outs={gameDetails.liveData.linescore.outs}
-          />
+
           <div className="details flex justify-between">
             <div>
               {/* {selectedGamePk} uncomment to troubleshoot gamepk*/}
@@ -29,6 +22,14 @@ export default function GameDetail({
                 {`${gameDetails.liveData.linescore.balls} - ${gameDetails.liveData.linescore.strikes}`}
               </div>
             </div>
+            <BaseDiamond
+              bases={{
+                first: gameDetails?.liveData?.linescore?.offense?.first,
+                second: gameDetails?.liveData?.linescore?.offense?.second,
+                third: gameDetails?.liveData?.linescore?.offense?.third,
+              }}
+              outs={gameDetails.liveData.linescore.outs}
+            />
 
             <div className="flex justify-evenly flex-col">
               <div>
