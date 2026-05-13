@@ -14,13 +14,7 @@
 }
 
 .base.occupied {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.base.occupied {
   background: var(--diamond-active);
-  border-color: var(--diamond-active);
 }
 
 .base-second {
