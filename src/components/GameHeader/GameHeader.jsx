@@ -1,4 +1,4 @@
-const GameHeader = ({ game }) => {
+const GameHeader = ({ game, handlePlayerClick }) => {
   const home = game.teams.home.team.name;
   const away = game.teams.away.team.name;
   const homeId = game.teams.home.team.id;
@@ -12,6 +12,9 @@ const GameHeader = ({ game }) => {
   const status = game.status.detailedState;
   const gameTime = new Date(game.gameDate).toLocaleTimeString();
   const venue = game.venue.name;
+  const homePitcher = game.teams.home.probablePitcher;
+  const awayPitcher = game.teams.away.probablePitcher;
+
   return (
     <>
       <div className="flex justify-center">
@@ -47,6 +50,24 @@ const GameHeader = ({ game }) => {
       </div>
       <div className="status">
         {gameTime} at {venue}
+      </div>
+      <div className="flex justify-evenly">
+        <div
+          onClick={() =>
+            handlePlayerClick(awayPitcher.fullName, awayPitcher.id)
+          }
+          className="text-button"
+        >
+          Away SP: {awayPitcher.fullName ?? "TBD"}
+        </div>
+        <div
+          onClick={() =>
+            handlePlayerClick(awayPitcher.fullName, awayPitcher.id)
+          }
+          className="text-button"
+        >
+          Home SP: {homePitcher.fullName ?? "TBD"}
+        </div>
       </div>
     </>
   );

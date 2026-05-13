@@ -41,7 +41,7 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
 
   return (
     <>
-      <GameHeader game={game} />
+      <GameHeader game={game} handlePlayerClick={handlePlayerClick} />
 
       <div className=" flex justify-flex-end">
         {showLiveFeedButton && (
