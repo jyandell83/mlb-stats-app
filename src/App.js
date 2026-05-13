@@ -22,8 +22,7 @@ export default function App() {
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
   const [selectedPlayerName, setSelectedPlayerName] = useState(null);
   const [currentDate, setCurrentDate] = useState(formattedDate);
-  // TODO: Light/Dark theme needs work, didn't use variables everywhere
-  // const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     const fetchGames = () => {
@@ -88,13 +87,13 @@ export default function App() {
     setCurrentDate(value);
   };
 
-  // const toggleTheme = () => {
-  //   const newTheme = theme === "light" ? "dark" : "light";
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
 
-  //   setTheme(newTheme);
+    setTheme(newTheme);
 
-  //   document.documentElement.setAttribute("data-theme", newTheme);
-  // };
+    document.documentElement.setAttribute("data-theme", newTheme);
+  };
 
   return (
     <div className="container">
@@ -107,15 +106,18 @@ export default function App() {
           />
         )}
       </div>
-      <select value={currentDate} onChange={handleDateChange}>
-        <option value={formattedDate}>Today</option>
-        <option value={formattedYesterday}>Yesterday</option>
-      </select>
+
+      <div className="flex justify-between">
+        <select value={currentDate} onChange={handleDateChange}>
+          <option value={formattedDate}>Today</option>
+          <option value={formattedYesterday}>Yesterday</option>
+        </select>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === "dark" ? "☀️" : "🌙"}
+        </button>
+      </div>
 
       <Header date={currentDate} />
-      {/* <button className="theme-toggle" onClick={toggleTheme}>
-        {theme === "dark" ? "☀️" : "🌙"}
-      </button> */}
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex flex-col">

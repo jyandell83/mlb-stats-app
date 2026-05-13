@@ -135,7 +135,7 @@ h3 {
 }
 
 .modal-content {
-  background: white;
+  background: var(--bg);
   padding: 20px;
   border-radius: 8px;
   min-width: 300px;
@@ -164,7 +164,7 @@ h3 {
 
 .modal-close-x:hover {
   background-color: rgba(0, 0, 0, 0.08);
-  color: #111;
+  color: var(--text);
 }
 
 .modal-footer {
@@ -197,12 +197,10 @@ h3 {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-
   padding: 1rem;
   margin: 1rem 0;
-
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: 12px;
 }
 
@@ -214,7 +212,7 @@ h3 {
 .team-filter label {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--text);
 }
 
 .team-filter select {
@@ -222,13 +220,10 @@ h3 {
   min-height: 90px;
   height: 90px;
   padding: 0.5rem;
-
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--border);
   border-radius: 10px;
-
-  background: white;
-  color: #111827;
-
+  background: var(--bg);
+  color: var(--text);
   font-size: 0.95rem;
   line-height: 1.5;
 }

@@ -58,15 +58,16 @@ const GameHeader = ({ game, handlePlayerClick }) => {
           }
           className="text-button"
         >
-          Away SP: {awayPitcher.fullName ?? "TBD"}
+          {awayPitcher.fullName ?? "TBD"}
         </div>
+        <div>VS.</div>
         <div
           onClick={() =>
             handlePlayerClick(awayPitcher.fullName, awayPitcher.id)
           }
           className="text-button"
         >
-          Home SP: {homePitcher.fullName ?? "TBD"}
+          {homePitcher.fullName ?? "TBD"}
         </div>
       </div>
     </>
