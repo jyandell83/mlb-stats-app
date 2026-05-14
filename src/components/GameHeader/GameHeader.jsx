@@ -63,7 +63,7 @@ const GameHeader = ({ game, handlePlayerClick }) => {
         <div>VS.</div>
         <div
           onClick={() =>
-            handlePlayerClick(awayPitcher.fullName, awayPitcher.id)
+            handlePlayerClick(homePitcher.fullName, awayPitcher.id)
           }
           className="text-button"
         >
