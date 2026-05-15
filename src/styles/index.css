@@ -265,7 +265,7 @@ h3 {
   opacity: 0.85;
 }
 
-.stats-table tbody tr:nth-child(odd) {
+.stats-table tbody tr:nth-child(even) {
   background-color: var(--row-alt);
 }
 
@@ -301,10 +301,21 @@ h3 {
   border-bottom: none;
 }
 
+.stats-table thead tr {
+  font-weight: 700;
+  background-color: var(--row-header-bg);
+  border-bottom: 1px solid var(--primary);
+}
+
+.stats-table thead td {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
 .stats-table tfoot tr {
   font-weight: 700;
   background-color: var(--row-total-bg);
-  border-top: 2px solid var(--primary);
+  border-top: 1px solid var(--primary);
 }
 
 .stats-table tfoot td {
