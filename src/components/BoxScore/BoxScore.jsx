@@ -28,6 +28,9 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
     .filter((player) => player.battingOrder)
     .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder));
 
+  const homeTeamStats = boxScore?.teams?.home?.teamStats;
+  const awayTeamStats = boxScore?.teams?.away?.teamStats;
+
   return (
     <div className="flex justify-evenly">
       <div className="box-score">
@@ -70,6 +73,17 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
               </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td>{awayTeamStats?.batting?.atBats ?? "-"}</td>
+              <td>{awayTeamStats?.batting?.runs ?? "-"}</td>
+              <td>{awayTeamStats?.batting?.hits ?? "-"}</td>
+              <td>{awayTeamStats?.batting?.rbi ?? "-"}</td>
+              <td>{awayTeamStats?.batting?.baseOnBalls ?? "-"}</td>
+              <td>{awayTeamStats?.batting?.strikeOuts ?? "-"}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
 
@@ -113,6 +127,17 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
               </tr>
             ))}
           </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td>{homeTeamStats?.batting?.atBats ?? "-"}</td>
+              <td>{homeTeamStats?.batting?.runs ?? "-"}</td>
+              <td>{homeTeamStats?.batting?.hits ?? "-"}</td>
+              <td>{homeTeamStats?.batting?.rbi ?? "-"}</td>
+              <td>{homeTeamStats?.batting?.baseOnBalls ?? "-"}</td>
+              <td>{homeTeamStats?.batting?.strikeOuts ?? "-"}</td>
+            </tr>
+          </tfoot>
         </table>
       </div>
     </div>

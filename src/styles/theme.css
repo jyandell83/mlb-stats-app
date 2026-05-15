@@ -7,6 +7,9 @@
   --font-family: "Inter", system-ui, sans-serif;
   --font-family-header: "Oswald", sans-serif;
   --diamond-active: #f59e0b;
+  --row-alt: rgba(0, 0, 0, 0.04);
+  --row-hover: rgba(0, 0, 0, 0.08);
+  --row-total-bg: rgba(12, 35, 64, 0.08);
 }
 
 [data-theme="dark"] {
@@ -15,4 +18,7 @@
   --text: #f3f4f6;
   --primary: #1e3a8a;
   --accent: #ef4444;
+  --row-alt: rgba(255, 255, 255, 0.05);
+  --row-hover: rgba(255, 255, 255, 0.1);
+  --row-total-bg: rgba(255, 255, 255, 0.08);
 }

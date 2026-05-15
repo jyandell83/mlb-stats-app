@@ -264,3 +264,55 @@ h3 {
 .theme-toggle:hover {
   opacity: 0.85;
 }
+
+.stats-table tbody tr:nth-child(odd) {
+  background-color: var(--row-alt);
+}
+
+.stats-table tbody tr:hover {
+  background-color: var(--row-hover);
+}
+
+.stats-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.95rem;
+  background: var(--bg);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.stats-table th,
+.stats-table td {
+  padding: 0.85rem 1rem;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-table th {
+  background: var(--bg);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.stats-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.stats-table tfoot tr {
+  font-weight: 700;
+  background-color: var(--row-total-bg);
+  border-top: 2px solid var(--primary);
+}
+
+.stats-table tfoot td {
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+
+.stats-table tfoot td:first-child {
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
