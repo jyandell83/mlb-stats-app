@@ -49,8 +49,8 @@ export const getLinescore = (gamePk) => `${BASE_URL}/game/${gamePk}/linescore`;
  *  Get player season stats
  * - Batting avg, HR, RBI, ERA, etc.
  */
-export const getPlayerStats = (playerId) =>
-  `${BASE_URL}/people/${playerId}/stats?stats=season`;
+export const getPlayerStats = (playerId, type = "season") =>
+  `${BASE_URL}/people/${playerId}/stats?stats=${type}`;
 
 /**
  *  Get team roster

@@ -5,23 +5,40 @@ import { getPlayerStats } from "../../api/mlbApi";
 import "./PlayerModal.css";
 
 export default function PlayerModal({ onClose, playerId, playerName }) {
-  const [playerDetails, setPlayerDetails] = useState(null);
+  const [yearByYearStats, setYearByYearStats] = useState(null);
+  const [gameLogStats, setGameLogStats] = useState(null);
 
   useEffect(() => {
     if (!playerId) return;
 
-    fetch(getPlayerStats(playerId))
-      .then((res) => res.json())
-      .then(setPlayerDetails);
+    const fetchStats = async () => {
+      try {
+        const [yearByYear, gameLog] = await Promise.all([
+          fetch(getPlayerStats(playerId, "yearByYear")).then((res) =>
+            res.json(),
+          ),
+          fetch(getPlayerStats(playerId, "gameLog")).then((res) => res.json()),
+        ]);
+
+        setYearByYearStats(yearByYear);
+        setGameLogStats(gameLog);
+      } catch (err) {
+        console.error("Failed to fetch player stats:", err);
+      }
+    };
+
+    fetchStats();
   }, [playerId]);
 
-  console.log(playerDetails);
+  console.log(yearByYearStats);
+  console.log(gameLogStats);
 
-  const stats = playerDetails?.stats?.[0]?.splits?.[0]?.stat;
+  const splits = yearByYearStats?.stats?.[0]?.splits ?? [];
+
   const isPitcher =
-    playerDetails?.stats?.[0]?.group?.displayName === "pitching";
+    yearByYearStats?.stats?.[0]?.group?.displayName === "pitching";
 
-  if (!stats) {
+  if (!splits) {
     return <div className="modal-overlay">Loading...</div>;
   }
 
@@ -46,7 +63,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
               <table className="stats-table">
                 <thead>
                   <tr>
-                    <th></th>
+                    <th>Year</th>
                     <th>W</th>
                     <th>L</th>
                     <th>ERA</th>
@@ -63,22 +80,26 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Season</td>
-                    <td>{stats?.wins}</td>
-                    <td>{stats?.losses}</td>
-                    <td>{stats?.era}</td>
-                    <td>{stats?.gamesPitched}</td>
-                    <td>{stats?.gamesStarted}</td>
-                    <td>{stats?.saves}</td>
-                    <td>{stats?.inningsPitched}</td>
-                    <td>{stats?.hits}</td>
-                    <td>{stats?.runs}</td>
-                    <td>{stats?.earnedRuns}</td>
-                    <td>{stats?.baseOnBalls}</td>
-                    <td>{stats?.strikeOuts}</td>
-                    <td>{stats?.whip}</td>
-                  </tr>
+                  {splits.map((split) => {
+                    return (
+                      <tr>
+                        <td>{split?.season}</td>
+                        <td>{split?.stat?.wins}</td>
+                        <td>{split?.stat?.losses}</td>
+                        <td>{split?.stat?.era}</td>
+                        <td>{split?.stat?.gamesPitched}</td>
+                        <td>{split?.stat?.gamesStarted}</td>
+                        <td>{split?.stat?.saves}</td>
+                        <td>{split?.stat?.inningsPitched}</td>
+                        <td>{split?.stat?.hits}</td>
+                        <td>{split?.stat?.runs}</td>
+                        <td>{split?.stat?.earnedRuns}</td>
+                        <td>{split?.stat?.baseOnBalls}</td>
+                        <td>{split?.stat?.strikeOuts}</td>
+                        <td>{split?.stat?.whip}</td>
+                      </tr>
+                    );
+                  })}
                 </tbody>
               </table>
             </div>
@@ -86,7 +107,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
             <table className="stats-table">
               <thead>
                 <tr>
-                  <th></th>
+                  <th>Year</th>
                   <th>AVG</th>
                   <th>G</th>
                   <th>AB</th>
@@ -105,24 +126,28 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Season</td>
-                  <td>{stats?.avg}</td>
-                  <td>{stats?.gamesPlayed}</td>
-                  <td>{stats?.atBats}</td>
-                  <td>{stats?.runs}</td>
-                  <td>{stats?.hits}</td>
-                  <td>{stats?.doubles}</td>
-                  <td>{stats?.triples}</td>
-                  <td>{stats?.homeRuns}</td>
-                  <td>{stats?.rbi}</td>
-                  <td>{stats?.baseOnBalls}</td>
-                  <td>{stats?.strikeOuts}</td>
-                  <td>{stats?.stolenBases}</td>
-                  <td>{stats?.obp}</td>
-                  <td>{stats?.slg}</td>
-                  <td>{stats?.ops}</td>
-                </tr>
+                {splits.map((split) => {
+                  return (
+                    <tr>
+                      <td>{split?.season}</td>
+                      <td>{split?.stat?.avg}</td>
+                      <td>{split?.stat?.gamesPlayed}</td>
+                      <td>{split?.stat?.atBats}</td>
+                      <td>{split?.stat?.runs}</td>
+                      <td>{split?.stat?.hits}</td>
+                      <td>{split?.stat?.doubles}</td>
+                      <td>{split?.stat?.triples}</td>
+                      <td>{split?.stat?.homeRuns}</td>
+                      <td>{split?.stat?.rbi}</td>
+                      <td>{split?.stat?.baseOnBalls}</td>
+                      <td>{split?.stat?.strikeOuts}</td>
+                      <td>{split?.stat?.stolenBases}</td>
+                      <td>{split?.stat?.obp}</td>
+                      <td>{split?.stat?.slg}</td>
+                      <td>{split?.stat?.ops}</td>
+                    </tr>
+                  );
+                })}
               </tbody>
             </table>
           )}
