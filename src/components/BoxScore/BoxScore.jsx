@@ -28,8 +28,27 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
     .filter((player) => player.battingOrder)
     .sort((a, b) => Number(a.battingOrder) - Number(b.battingOrder));
 
+  const homePitchers = Object.values(
+    boxScore?.teams?.home?.players || {},
+  ).filter(
+    (player) =>
+      player.stats?.pitching?.inningsPitched &&
+      player.stats.pitching.inningsPitched !== "0.0",
+  );
+
+  const awayPitchers = Object.values(
+    boxScore?.teams?.away?.players || {},
+  ).filter(
+    (player) =>
+      player.stats?.pitching?.inningsPitched &&
+      player.stats.pitching.inningsPitched !== "0.0",
+  );
+
   const homeTeamStats = boxScore?.teams?.home?.teamStats;
   const awayTeamStats = boxScore?.teams?.away?.teamStats;
+
+  console.log(homePitchers);
+  console.log(awayPitchers);
 
   return (
     <div className="flex justify-evenly">
@@ -85,6 +104,58 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
             </tr>
           </tfoot>
         </table>
+        <table className="stats-table">
+          <thead>
+            <tr>
+              <th>Pitcher</th>
+              <th>IP</th>
+              <th>H</th>
+              <th>R</th>
+              <th>ER</th>
+              <th>BB</th>
+              <th>SO</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {awayPitchers.map((player) => (
+              <tr key={player.person.id}>
+                <td>
+                  <button
+                    className="text-button"
+                    onClick={() =>
+                      handlePlayerClick(
+                        player.person.fullName,
+                        player.person.id,
+                      )
+                    }
+                  >
+                    {player.person.boxscoreName}
+                  </button>
+                </td>
+
+                <td>{player.stats?.pitching?.inningsPitched ?? "-"}</td>
+                <td>{player.stats?.pitching?.hits ?? "-"}</td>
+                <td>{player.stats?.pitching?.runs ?? "-"}</td>
+                <td>{player.stats?.pitching?.earnedRuns ?? "-"}</td>
+                <td>{player.stats?.pitching?.baseOnBalls ?? "-"}</td>
+                <td>{player.stats?.pitching?.strikeOuts ?? "-"}</td>
+              </tr>
+            ))}
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td></td>
+              <td>{awayTeamStats?.pitching?.inningsPitched ?? "-"}</td>
+              <td>{awayTeamStats?.pitching?.hits ?? "-"}</td>
+              <td>{awayTeamStats?.pitching?.runs ?? "-"}</td>
+              <td>{awayTeamStats?.pitching?.earnedRuns ?? "-"}</td>
+              <td>{awayTeamStats?.pitching?.baseOnBalls ?? "-"}</td>
+              <td>{awayTeamStats?.pitching?.strikeOuts ?? "-"}</td>
+            </tr>
+          </tfoot>
+        </table>
       </div>
 
       <div className="card">
@@ -136,6 +207,58 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
               <td>{homeTeamStats?.batting?.rbi ?? "-"}</td>
               <td>{homeTeamStats?.batting?.baseOnBalls ?? "-"}</td>
               <td>{homeTeamStats?.batting?.strikeOuts ?? "-"}</td>
+            </tr>
+          </tfoot>
+        </table>
+        <table className="stats-table">
+          <thead>
+            <tr>
+              <th>Pitcher</th>
+              <th>IP</th>
+              <th>H</th>
+              <th>R</th>
+              <th>ER</th>
+              <th>BB</th>
+              <th>SO</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {homePitchers.map((player) => (
+              <tr key={player.person.id}>
+                <td>
+                  <button
+                    className="text-button"
+                    onClick={() =>
+                      handlePlayerClick(
+                        player.person.fullName,
+                        player.person.id,
+                      )
+                    }
+                  >
+                    {player.person.boxscoreName}
+                  </button>
+                </td>
+
+                <td>{player.stats?.pitching?.inningsPitched ?? "-"}</td>
+                <td>{player.stats?.pitching?.hits ?? "-"}</td>
+                <td>{player.stats?.pitching?.runs ?? "-"}</td>
+                <td>{player.stats?.pitching?.earnedRuns ?? "-"}</td>
+                <td>{player.stats?.pitching?.baseOnBalls ?? "-"}</td>
+                <td>{player.stats?.pitching?.strikeOuts ?? "-"}</td>
+              </tr>
+            ))}
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td></td>
+              <td>{homeTeamStats?.pitching?.inningsPitched ?? "-"}</td>
+              <td>{homeTeamStats?.pitching?.hits ?? "-"}</td>
+              <td>{homeTeamStats?.pitching?.runs ?? "-"}</td>
+              <td>{homeTeamStats?.pitching?.earnedRuns ?? "-"}</td>
+              <td>{homeTeamStats?.pitching?.baseOnBalls ?? "-"}</td>
+              <td>{homeTeamStats?.pitching?.strikeOuts ?? "-"}</td>
             </tr>
           </tfoot>
         </table>
