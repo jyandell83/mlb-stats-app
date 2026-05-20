@@ -54,7 +54,7 @@ const GameHeader = ({ game, handlePlayerClick }) => {
       <div className="flex justify-evenly">
         <div
           onClick={() =>
-            handlePlayerClick(awayPitcher.fullName, awayPitcher.id)
+            handlePlayerClick(awayPitcher?.fullName, awayPitcher?.id)
           }
           className="text-button"
         >
@@ -63,7 +63,7 @@ const GameHeader = ({ game, handlePlayerClick }) => {
         <div>VS.</div>
         <div
           onClick={() =>
-            handlePlayerClick(homePitcher.fullName, homePitcher.id)
+            handlePlayerClick(homePitcher?.fullName, homePitcher?.id)
           }
           className="text-button"
         >

@@ -77,6 +77,7 @@ export default function App() {
   }
 
   const handlePlayerClick = (playerName, playerId) => {
+    if (!playerId) return;
     setSelectedPlayerId(playerId);
     setSelectedPlayerName(playerName);
     setPlayerModalOpen(true);
