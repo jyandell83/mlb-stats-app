@@ -47,9 +47,6 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
   const homeTeamStats = boxScore?.teams?.home?.teamStats;
   const awayTeamStats = boxScore?.teams?.away?.teamStats;
 
-  console.log(homePitchers);
-  console.log(awayPitchers);
-
   return (
     <div className="flex justify-evenly">
       <div className="box-score">

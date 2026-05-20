@@ -58,7 +58,7 @@ const GameHeader = ({ game, handlePlayerClick }) => {
           }
           className="text-button"
         >
-          {awayPitcher.fullName ?? "TBD"}
+          {awayPitcher?.fullName ?? "TBD"}
         </div>
         <div>VS.</div>
         <div
@@ -67,7 +67,7 @@ const GameHeader = ({ game, handlePlayerClick }) => {
           }
           className="text-button"
         >
-          {homePitcher.fullName ?? "TBD"}
+          {homePitcher?.fullName ?? "TBD"}
         </div>
       </div>
     </>

@@ -27,13 +27,23 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
   };
 
   useEffect(() => {
-    const fetchDetails = () => {
-      fetch(getLiveGameFeed(gamePk))
-        .then((res) => res.json())
-        .then(setGameDetails);
+    const fetchDetails = async () => {
+      try {
+        const res = await fetch(getLiveGameFeed(gamePk));
+
+        if (!res.ok) {
+          throw new Error(`HTTP error: ${res.status}`);
+        }
+
+        const data = await res.json();
+        setGameDetails(data);
+      } catch (error) {
+        console.error("Failed to fetch game details:", error);
+      }
     };
 
     fetchDetails();
+
     const interval = setInterval(fetchDetails, 15000);
 
     return () => clearInterval(interval);
