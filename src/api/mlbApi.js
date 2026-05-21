@@ -69,7 +69,8 @@ export const getTeamStats = (teamId) => `${BASE_URL}/teams/${teamId}/stats`;
  * Get league standings
  * - Divisions, wins/losses, rankings
  */
-export const getStandings = () => `${BASE_URL}/standings`;
+export const getStandings = () =>
+  `${BASE_URL}/standings?sportId=1&leagueId=103,104&standingsTypes=regularSeason`;
 
 /**
  *  Get all MLB teams
