@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getPlayerStats } from "../../api/mlbApi";
 
 import "./PlayerModal.css";
+import StatsTable from "../StatsTable/StatsTable";
 
 export default function PlayerModal({ onClose, playerId, playerName }) {
   const [yearByYearStats, setYearByYearStats] = useState(null);
@@ -30,8 +31,8 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
     fetchStats();
   }, [playerId]);
 
-  // console.log(gameLogStats);
-  // console.log(yearByYearStats);
+  console.log(gameLogStats);
+  console.log(yearByYearStats);
 
   const splits = yearByYearStats?.stats?.[0]?.splits ?? [];
 
@@ -60,100 +61,84 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
           {isPitcher ? (
             <div className="pitcher-stats">
               <h3>Pitching Stats</h3>
-              <table className="stats-table">
-                <thead>
-                  <tr>
-                    <th>Team</th>
-                    <th>Year</th>
-                    <th>W</th>
-                    <th>L</th>
-                    <th>ERA</th>
-                    <th>G</th>
-                    <th>GS</th>
-                    <th>SV</th>
-                    <th>IP</th>
-                    <th>H</th>
-                    <th>R</th>
-                    <th>ER</th>
-                    <th>BB</th>
-                    <th>SO</th>
-                    <th>WHIP</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {splits.map((split) => {
-                    return (
-                      <tr>
-                        <td>{split?.team?.name}</td>
-                        <td>{split?.season}</td>
-                        <td>{split?.stat?.wins}</td>
-                        <td>{split?.stat?.losses}</td>
-                        <td>{split?.stat?.era}</td>
-                        <td>{split?.stat?.gamesPitched}</td>
-                        <td>{split?.stat?.gamesStarted}</td>
-                        <td>{split?.stat?.saves}</td>
-                        <td>{split?.stat?.inningsPitched}</td>
-                        <td>{split?.stat?.hits}</td>
-                        <td>{split?.stat?.runs}</td>
-                        <td>{split?.stat?.earnedRuns}</td>
-                        <td>{split?.stat?.baseOnBalls}</td>
-                        <td>{split?.stat?.strikeOuts}</td>
-                        <td>{split?.stat?.whip}</td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+              <StatsTable
+                columns={[
+                  { label: "Team", key: "team" },
+                  { label: "Year", key: "season" },
+                  { label: "W", key: "wins" },
+                  { label: "L", key: "losses" },
+                  { label: "ERA", key: "era" },
+                  { label: "G", key: "gamesPitched" },
+                  { label: "GS", key: "gamesStarted" },
+                  { label: "SV", key: "saves" },
+                  { label: "IP", key: "inningsPitched" },
+                  { label: "H", key: "hits" },
+                  { label: "R", key: "runs" },
+                  { label: "ER", key: "earnedRuns" },
+                  { label: "BB", key: "baseOnBalls" },
+                  { label: "SO", key: "strikeOuts" },
+                  { label: "WHIP", key: "whip" },
+                ]}
+                rows={splits.map((split) => ({
+                  team: split?.team?.name,
+                  season: split?.season,
+                  wins: split?.stat?.wins,
+                  losses: split?.stat?.losses,
+                  era: split?.stat?.era,
+                  gamesPitched: split?.stat?.gamesPitched,
+                  gamesStarted: split?.stat?.gamesStarted,
+                  saves: split?.stat?.saves,
+                  inningsPitched: split?.stat?.inningsPitched,
+                  hits: split?.stat?.hits,
+                  runs: split?.stat?.runs,
+                  earnedRuns: split?.stat?.earnedRuns,
+                  baseOnBalls: split?.stat?.baseOnBalls,
+                  strikeOuts: split?.stat?.strikeOuts,
+                  whip: split?.stat?.whip,
+                }))}
+              />
             </div>
           ) : (
-            <table className="stats-table">
-              <thead>
-                <tr>
-                  <th>Team</th>
-                  <th>Year</th>
-                  <th>AVG</th>
-                  <th>G</th>
-                  <th>AB</th>
-                  <th>R</th>
-                  <th>H</th>
-                  <th>2B</th>
-                  <th>3B</th>
-                  <th>HR</th>
-                  <th>RBI</th>
-                  <th>BB</th>
-                  <th>SO</th>
-                  <th>SB</th>
-                  <th>OBP</th>
-                  <th>SLG</th>
-                  <th>OPS</th>
-                </tr>
-              </thead>
-              <tbody>
-                {splits.map((split) => {
-                  return (
-                    <tr>
-                      <td>{split?.team?.name}</td>
-                      <td>{split?.season}</td>
-                      <td>{split?.stat?.avg}</td>
-                      <td>{split?.stat?.gamesPlayed}</td>
-                      <td>{split?.stat?.atBats}</td>
-                      <td>{split?.stat?.runs}</td>
-                      <td>{split?.stat?.hits}</td>
-                      <td>{split?.stat?.doubles}</td>
-                      <td>{split?.stat?.triples}</td>
-                      <td>{split?.stat?.homeRuns}</td>
-                      <td>{split?.stat?.rbi}</td>
-                      <td>{split?.stat?.baseOnBalls}</td>
-                      <td>{split?.stat?.strikeOuts}</td>
-                      <td>{split?.stat?.stolenBases}</td>
-                      <td>{split?.stat?.obp}</td>
-                      <td>{split?.stat?.slg}</td>
-                      <td>{split?.stat?.ops}</td>
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
+            <StatsTable
+              columns={[
+                { label: "Team", key: "team" },
+                { label: "Year", key: "season" },
+                { label: "AVG", key: "avg" },
+                { label: "G", key: "gamesPlayed" },
+                { label: "AB", key: "atBats" },
+                { label: "R", key: "runs" },
+                { label: "H", key: "hits" },
+                { label: "2B", key: "doubles" },
+                { label: "3B", key: "triples" },
+                { label: "HR", key: "homeRuns" },
+                { label: "RBI", key: "rbi" },
+                { label: "BB", key: "baseOnBalls" },
+                { label: "SO", key: "strikeOuts" },
+                { label: "SB", key: "stolenBases" },
+                { label: "OBP", key: "obp" },
+                { label: "SLG", key: "slg" },
+                { label: "OPS", key: "ops" },
+              ]}
+              rows={splits.map((split) => ({
+                team: split?.team?.name,
+                season: split?.season,
+                avg: split?.stat?.avg,
+                gamesPlayed: split?.stat?.gamesPlayed,
+                atBats: split?.stat?.atBats,
+                runs: split?.stat?.runs,
+                hits: split?.stat?.hits,
+                doubles: split?.stat?.doubles,
+                triples: split?.stat?.triples,
+                homeRuns: split?.stat?.homeRuns,
+                rbi: split?.stat?.rbi,
+                baseOnBalls: split?.stat?.baseOnBalls,
+                strikeOuts: split?.stat?.strikeOuts,
+                stolenBases: split?.stat?.stolenBases,
+                obp: split?.stat?.obp,
+                slg: split?.stat?.slg,
+                ops: split?.stat?.ops,
+              }))}
+            />
           )}
         </div>
 
