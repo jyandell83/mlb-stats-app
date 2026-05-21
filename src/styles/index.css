@@ -16,6 +16,25 @@ h3 {
   padding: 0;
 }
 
+.top-nav {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--card);
+  border-bottom: 1px solid #ddd;
+}
+
+.top-nav a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.top-nav a.active {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
 .btn {
   background: var(--primary);
   color: white;

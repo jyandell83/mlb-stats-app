@@ -6,12 +6,6 @@ import PlayerModal from "../../components/PlayerModal/PlayerModal";
 import Header from "../../components/Header/Header";
 import GameList from "../../components/GameList/GameList";
 
-// import { getSchedule } from "./api/mlbApi";
-
-// import Header from "./components/Header/Header";
-// import GameList from "./components/GameList/GameList";
-// import PlayerModal from "./components/PlayerModal/PlayerModal";
-
 const Games = () => {
   const today = new Date();
   const formattedDate = today.toLocaleDateString("en-CA");
