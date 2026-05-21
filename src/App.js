@@ -9,18 +9,18 @@ export default function App() {
   return (
     <>
       <nav className="top-nav">
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/home">Home</NavLink>
         <NavLink to="/standings">Standings</NavLink>
         <NavLink to="/leaderboards">Leaderboards</NavLink>
-        <NavLink to="/games">Games</NavLink>
+        <NavLink to="/">Games</NavLink>
       </nav>
 
-      <main>
+      <main className="container">
         <Routes>
-          <Route path="/" element={<HomeDashboard />} />
+          <Route path="/home" element={<HomeDashboard />} />
           <Route path="/standings" element={<Standings />} />
           <Route path="/leaderboards" element={<Leaderboards />} />
-          <Route path="/games" element={<Games />} />
+          <Route path="/" element={<Games />} />
         </Routes>
       </main>
     </>

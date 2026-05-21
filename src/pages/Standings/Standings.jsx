@@ -33,8 +33,6 @@ const Standings = () => {
     { label: "STRK", key: "streak" },
   ];
 
-  console.log(standings);
-
   return (
     <>
       {divisions.map((division) => (

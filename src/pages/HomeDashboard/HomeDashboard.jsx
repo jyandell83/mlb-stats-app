@@ -1,5 +1,5 @@
 const HomeDashboard = () => {
-  return <h2>Dash</h2>;
+  return <h2>Coming Soon.</h2>;
 };
 
 export default HomeDashboard;
