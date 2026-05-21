@@ -1,134 +1,28 @@
-import { useEffect, useState } from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
 
-import { getSchedule } from "./api/mlbApi";
-
-import Header from "./components/Header/Header";
-import GameList from "./components/GameList/GameList";
-import PlayerModal from "./components/PlayerModal/PlayerModal";
+import HomeDashboard from "./pages/HomeDashboard/HomeDashboard";
+import Standings from "./pages/Standings/Standings";
+import Leaderboards from "./pages/Leaderboards/Leaderboards";
+import Games from "./pages/Games/Games";
 
 export default function App() {
-  const today = new Date();
-  const formattedDate = today.toLocaleDateString("en-CA");
-
-  const yesterday = new Date(today);
-  yesterday.setDate(today.getDate() - 1);
-
-  const formattedYesterday = yesterday.toLocaleDateString("en-CA");
-
-  const [games, setGames] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [selectedGamePk, setSelectedGamePk] = useState(null);
-  const [playerModalOpen, setPlayerModalOpen] = useState(false);
-  const [selectedPlayerId, setSelectedPlayerId] = useState(null);
-  const [selectedPlayerName, setSelectedPlayerName] = useState(null);
-  const [currentDate, setCurrentDate] = useState(formattedDate);
-  const [theme, setTheme] = useState("light");
-
-  useEffect(() => {
-    const fetchGames = () => {
-      fetch(getSchedule(currentDate))
-        .then((res) => res.json())
-        .then((data) => {
-          const allGames = data.dates?.[0]?.games || [];
-
-          /*** TODO: This is not sorting in the most interesting way, refactor sorting*/
-          const getPriority = (game) => {
-            const state = game.status?.detailedState;
-
-            if (state === "In Progress") return 0;
-            if (state === "Scheduled" || state === "Pre-Game") return 1;
-            if (state === "Final") return 2;
-
-            return 3; // fallback (delays, unknown states)
-          };
-          const sortGames = (games) => {
-            return [...games].sort((a, b) => {
-              const priorityDiff = getPriority(a) - getPriority(b);
-              if (priorityDiff !== 0) return priorityDiff;
-
-              // If both are live → sort by inning
-              const inningA = a.linescore?.currentInning ?? 0;
-              const inningB = b.linescore?.currentInning ?? 0;
-
-              return inningB - inningA;
-            });
-          };
-          setGames(sortGames(allGames));
-
-          setLoading(false);
-        })
-        .catch((err) => {
-          console.error(err);
-          setLoading(false);
-        });
-    };
-
-    // run immediately
-    fetchGames();
-
-    // then run every 30 sec
-    const interval = setInterval(fetchGames, 30000);
-
-    return () => clearInterval(interval);
-  }, [currentDate]);
-
-  if (loading) {
-    return <div className="loading">Loading games...</div>;
-  }
-
-  const handlePlayerClick = (playerName, playerId) => {
-    if (!playerId) return;
-    setSelectedPlayerId(playerId);
-    setSelectedPlayerName(playerName);
-    setPlayerModalOpen(true);
-  };
-
-  const handleDateChange = (e) => {
-    const value = e.target.value;
-    setCurrentDate(value);
-  };
-
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-
-    setTheme(newTheme);
-
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
-
   return (
-    <div className="container">
-      <div>
-        {playerModalOpen && (
-          <PlayerModal
-            playerId={selectedPlayerId}
-            playerName={selectedPlayerName}
-            onClose={() => setPlayerModalOpen(false)}
-          />
-        )}
-      </div>
+    <>
+      <nav className="top-nav">
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/standings">Standings</NavLink>
+        <NavLink to="/leaderboards">Leaderboards</NavLink>
+        <NavLink to="/games">Games</NavLink>
+      </nav>
 
-      <div className="flex justify-between">
-        <select value={currentDate} onChange={handleDateChange}>
-          <option value={formattedDate}>Today</option>
-          <option value={formattedYesterday}>Yesterday</option>
-        </select>
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === "dark" ? "☀️" : "🌙"}
-        </button>
-      </div>
-
-      <Header date={currentDate} />
-
-      {games.length === 0 && <div>No games today.</div>}
-      <div className="flex flex-col">
-        <GameList
-          games={games}
-          setSelectedGamePk={setSelectedGamePk}
-          selectedGamePk={selectedGamePk}
-          handlePlayerClick={handlePlayerClick}
-        />
-      </div>
-    </div>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomeDashboard />} />
+          <Route path="/standings" element={<Standings />} />
+          <Route path="/leaderboards" element={<Leaderboards />} />
+          <Route path="/games" element={<Games />} />
+        </Routes>
+      </main>
+    </>
   );
 }
