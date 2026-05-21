@@ -30,8 +30,8 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
     fetchStats();
   }, [playerId]);
 
-  console.log(yearByYearStats);
-  console.log(gameLogStats);
+  // console.log(gameLogStats);
+  // console.log(yearByYearStats);
 
   const splits = yearByYearStats?.stats?.[0]?.splits ?? [];
 
@@ -63,6 +63,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
               <table className="stats-table">
                 <thead>
                   <tr>
+                    <th>Team</th>
                     <th>Year</th>
                     <th>W</th>
                     <th>L</th>
@@ -83,6 +84,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
                   {splits.map((split) => {
                     return (
                       <tr>
+                        <td>{split?.team?.name}</td>
                         <td>{split?.season}</td>
                         <td>{split?.stat?.wins}</td>
                         <td>{split?.stat?.losses}</td>
@@ -107,6 +109,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
             <table className="stats-table">
               <thead>
                 <tr>
+                  <th>Team</th>
                   <th>Year</th>
                   <th>AVG</th>
                   <th>G</th>
@@ -129,6 +132,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
                 {splits.map((split) => {
                   return (
                     <tr>
+                      <td>{split?.team?.name}</td>
                       <td>{split?.season}</td>
                       <td>{split?.stat?.avg}</td>
                       <td>{split?.stat?.gamesPlayed}</td>
