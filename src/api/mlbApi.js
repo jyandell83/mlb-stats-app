@@ -90,3 +90,12 @@ export const getGameContent = (gamePk) => `${BASE_URL}/game/${gamePk}/content`;
  */
 export const getScheduleWithPitchers = (date) =>
   `${BASE_URL}/schedule?date=${date}&hydrate=probablePitcher`;
+
+
+export const getLeagueLeaders = ({
+  category,
+  statGroup = "hitting",
+  limit = 10,
+  season = new Date().getFullYear(),
+}) =>
+  `${BASE_URL}/stats/leaders?leaderCategories=${category}&statGroup=${statGroup}&limit=${limit}&season=${season}&sportId=1`;
