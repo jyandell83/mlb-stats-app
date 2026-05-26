@@ -4,7 +4,7 @@ import { getLeagueLeaders } from "../../api/mlbApi";
 
 import StatsTable from "../StatsTable/StatsTable";
 
-const LeagueLeaderCard = ({ title, category, statGroup }) => {
+const LeagueLeaderCard = ({ title, category, statGroup, range }) => {
   const [leaders, setLeaders] = useState([]);
   useEffect(() => {
     const fetchLeaders = async () => {
@@ -13,6 +13,7 @@ const LeagueLeaderCard = ({ title, category, statGroup }) => {
           getLeagueLeaders({
             category,
             statGroup,
+            range,
           }),
         );
 
@@ -33,7 +34,7 @@ const LeagueLeaderCard = ({ title, category, statGroup }) => {
     };
 
     fetchLeaders();
-  }, [category, statGroup]);
+  }, [category, statGroup, range]);
 
   const columns = [
     { label: "#", key: "rank" },

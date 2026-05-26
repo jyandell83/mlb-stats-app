@@ -91,11 +91,35 @@ export const getGameContent = (gamePk) => `${BASE_URL}/game/${gamePk}/content`;
 export const getScheduleWithPitchers = (date) =>
   `${BASE_URL}/schedule?date=${date}&hydrate=probablePitcher`;
 
-
 export const getLeagueLeaders = ({
   category,
   statGroup = "hitting",
   limit = 10,
   season = new Date().getFullYear(),
-}) =>
-  `${BASE_URL}/stats/leaders?leaderCategories=${category}&statGroup=${statGroup}&limit=${limit}&season=${season}&sportId=1`;
+  range = "season",
+}) => {
+  const params = new URLSearchParams({
+    leaderCategories: category,
+    statGroup,
+    limit,
+    sportId: 1,
+  });
+
+  if (range === "season") {
+    params.set("season", season);
+  }
+
+  if (range === "last7" || range === "last30") {
+    const days = range === "last7" ? 7 : 30;
+    const end = new Date();
+    const start = new Date();
+
+    start.setDate(end.getDate() - days);
+
+    params.set("statType", "byDateRange");
+    params.set("startDate", start.toISOString().split("T")[0]);
+    params.set("endDate", end.toISOString().split("T")[0]);
+  }
+
+  return `${BASE_URL}/stats/leaders?${params.toString()}`;
+};
