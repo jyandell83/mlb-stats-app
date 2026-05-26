@@ -295,6 +295,24 @@ h3 {
   opacity: 0.85;
 }
 
+.box-score {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.standings-division {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.stats-table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+}
+
 .stats-table tbody tr:nth-child(even) {
   background-color: var(--row-alt);
 }
@@ -356,4 +374,19 @@ h3 {
 .stats-table tfoot td:first-child {
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+/* phones */
+@media (max-width: 600px) {
+  .team-filter-group {
+    flex-direction: column;
+  }
+
+  .details {
+    flex-direction: column;
+  }
+}
+
+/* tablets / narrow laptops */
+@media (max-width: 900px) {
 }

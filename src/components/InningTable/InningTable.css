@@ -1,14 +1,17 @@
 .inning-table-wrapper {
   margin: 10px;
+  overflow-x: auto;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
 }
 
 .inning-table {
   width: 100%;
   border: 1px solid var(--primary);
   border-collapse: collapse;
-  width: 100%;
   font-size: 0.95rem;
   border-radius: 5px;
+  min-width: 600px;
 }
 
 .inning-table tbody tr:nth-child(even) {
