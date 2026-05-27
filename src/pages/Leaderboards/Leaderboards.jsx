@@ -8,6 +8,7 @@ const Leaderboards = () => {
     { title: "Home Runs", category: "homeRuns", statGroup: "hitting" },
     { title: "RBI", category: "runsBattedIn", statGroup: "hitting" },
     { title: "OPS", category: "ops", statGroup: "hitting" },
+    { title: "Wins", category: "wins", statGroup: "pitching" },
     { title: "ERA", category: "earnedRunAverage", statGroup: "pitching" },
     { title: "Strikeouts", category: "strikeOuts", statGroup: "pitching" },
     { title: "K/9", category: "strikeoutsPer9Inn", statGroup: "pitching" },
