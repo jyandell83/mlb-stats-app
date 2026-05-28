@@ -10,6 +10,15 @@ export default function GameList({
 }) {
   const [selectedTeams, setSelectedTeams] = useState([]);
 
+  const divisionNames = [
+    ...new Set(
+      games.flatMap((game) => [
+        game.teams.away.team.division?.name,
+        game.teams.home.team.division?.name,
+      ]),
+    ),
+  ].sort();
+
   const teamNames = [
     ...new Set(
       games.flatMap((game) => [
@@ -18,6 +27,8 @@ export default function GameList({
       ]),
     ),
   ].sort();
+
+  console.log(games);
 
   const filteredGames =
     selectedTeams.length === 0
@@ -54,6 +65,22 @@ export default function GameList({
             onChange={handleTeamChange}
           >
             {teamNames.map((team) => (
+              <option key={team} value={team}>
+                {team}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="team-filter-group">
+          <div>
+            <label htmlFor="teamFilter">Filter by Division</label>
+
+            <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
+          </div>
+
+          <select id="divisionFilter" multiple value="" onChange="">
+            {divisionNames.map((team) => (
               <option key={team} value={team}>
                 {team}
               </option>

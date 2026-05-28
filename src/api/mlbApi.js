@@ -14,7 +14,7 @@ const LIVE_BASE_URL = "https://statsapi.mlb.com/api/v1.1";
  */
 
 export const getSchedule = (date) =>
-  `${BASE_URL}/schedule?sportId=1&date=${date}&hydrate=linescore,probablePitcher`;
+  `${BASE_URL}/schedule?sportId=1&date=${date}&hydrate=linescore,probablePitcher,team(division)`;
 
 /**
  *  Get full live game data (VERY detailed)
