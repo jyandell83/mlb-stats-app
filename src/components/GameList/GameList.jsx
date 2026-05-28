@@ -85,7 +85,7 @@ export default function GameList({
             <h2>Filter by</h2>
             <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
           </div>
-          <div className="flex">
+          <div className="flex stack-on-mobile">
             <FilterSelect
               label="Team"
               options={teamNames}

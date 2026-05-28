@@ -86,3 +86,11 @@
 .pointer {
   cursor: pointer;
 }
+
+/* ===== mobile helpers ===== */
+
+@media (max-width: 600px) {
+  .stack-on-mobile {
+    flex-direction: column;
+  }
+}
