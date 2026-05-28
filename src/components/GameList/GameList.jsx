@@ -8,14 +8,38 @@ export default function GameList({
   selectedGamePk,
   handlePlayerClick,
 }) {
-  const [selectedTeams, setSelectedTeams] = useState([]);
+  const [filters, setFilters] = useState({
+    teams: [],
+    divisions: [],
+    status: [],
+  });
+
+  const getSelectedValues = (e) =>
+    Array.from(e.target.selectedOptions, (option) => option.value);
+
+  const handleFilterChange = (filterKey, values) => {
+    setFilters((prev) => ({
+      ...prev,
+      [filterKey]: values,
+    }));
+  };
+
+  const resetFilters = () => {
+    setFilters({
+      teams: [],
+      divisions: [],
+      status: [],
+    });
+  };
 
   const divisionNames = [
     ...new Set(
-      games.flatMap((game) => [
-        game.teams.away.team.division?.name,
-        game.teams.home.team.division?.name,
-      ]),
+      games
+        .flatMap((game) => [
+          game.teams.away.team.division?.name,
+          game.teams.home.team.division?.name,
+        ])
+        .filter(Boolean),
     ),
   ].sort();
 
@@ -28,25 +52,32 @@ export default function GameList({
     ),
   ].sort();
 
-  console.log(games);
+  const statusNames = [
+    ...new Set(
+      games.map((game) => game.status?.abstractGameState).filter(Boolean),
+    ),
+  ].sort();
 
-  const filteredGames =
-    selectedTeams.length === 0
-      ? games
-      : games.filter((game) => {
-          const home = game.teams.home.team.name;
-          const away = game.teams.away.team.name;
+  const filteredGames = games.filter((game) => {
+    const awayTeam = game.teams.away.team;
+    const homeTeam = game.teams.home.team;
 
-          return selectedTeams.includes(home) || selectedTeams.includes(away);
-        });
+    const matchesTeam =
+      filters.teams.length === 0 ||
+      filters.teams.includes(homeTeam.name) ||
+      filters.teams.includes(awayTeam.name);
 
-  const handleTeamChange = (e) => {
-    const values = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value,
-    );
-    setSelectedTeams(values);
-  };
+    const matchesDivision =
+      filters.divisions.length === 0 ||
+      filters.divisions.includes(homeTeam.division?.name) ||
+      filters.divisions.includes(awayTeam.division?.name);
+
+    const matchesStatus =
+      filters.status.length === 0 ||
+      filters.status.includes(game.status?.abstractGameState);
+
+    return matchesTeam && matchesDivision && matchesStatus;
+  });
 
   return (
     <>
@@ -54,15 +85,14 @@ export default function GameList({
         <div className="team-filter-group">
           <div>
             <label htmlFor="teamFilter">Filter by team</label>
-
             <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
           </div>
 
           <select
             id="teamFilter"
             multiple
-            value={selectedTeams}
-            onChange={handleTeamChange}
+            value={filters.teams}
+            onChange={(e) => handleFilterChange("teams", getSelectedValues(e))}
           >
             {teamNames.map((team) => (
               <option key={team} value={team}>
@@ -74,26 +104,48 @@ export default function GameList({
 
         <div className="team-filter-group">
           <div>
-            <label htmlFor="teamFilter">Filter by Division</label>
-
+            <label htmlFor="divisionFilter">Filter by division</label>
             <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
           </div>
 
-          <select id="divisionFilter" multiple value="" onChange="">
-            {divisionNames.map((team) => (
-              <option key={team} value={team}>
-                {team}
+          <select
+            id="divisionFilter"
+            multiple
+            value={filters.divisions}
+            onChange={(e) =>
+              handleFilterChange("divisions", getSelectedValues(e))
+            }
+          >
+            {divisionNames.map((division) => (
+              <option key={division} value={division}>
+                {division}
               </option>
             ))}
           </select>
         </div>
 
-        <button
-          className="btn"
-          type="button"
-          onClick={() => setSelectedTeams([])}
-        >
-          Reset Filter
+        <div className="team-filter-group">
+          <div>
+            <label htmlFor="statusFilter">Filter by status</label>
+            <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
+          </div>
+
+          <select
+            id="statusFilter"
+            multiple
+            value={filters.status}
+            onChange={(e) => handleFilterChange("status", getSelectedValues(e))}
+          >
+            {statusNames.map((status) => (
+              <option key={status} value={status}>
+                {status}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <button className="btn" type="button" onClick={resetFilters}>
+          Reset Filters
         </button>
       </div>
 
