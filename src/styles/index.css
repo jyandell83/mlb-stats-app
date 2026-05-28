@@ -239,6 +239,7 @@ h3 {
   flex-direction: column;
   gap: 0.4rem;
   align-items: center;
+  margin: 10px;
 }
 
 .filter label {

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import GameCard from "../GameCard/GameCard";
+import FilterSelect from "../FilterSelect/FilterSelect";
 
 export default function GameList({
   games,
@@ -13,9 +14,6 @@ export default function GameList({
     divisions: [],
     status: [],
   });
-
-  const getSelectedValues = (e) =>
-    Array.from(e.target.selectedOptions, (option) => option.value);
 
   const handleFilterChange = (filterKey, values) => {
     setFilters((prev) => ({
@@ -82,66 +80,33 @@ export default function GameList({
   return (
     <>
       <div className="filter">
-        <div className="filter-group">
-          <div>
-            <label htmlFor="teamFilter">Filter by team</label>
+        <div className="filters">
+          <div className="filters-header">
+            <h2>Filter by</h2>
             <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
           </div>
+          <div className="flex">
+            <FilterSelect
+              label="Team"
+              options={teamNames}
+              value={filters.teams}
+              onChange={(values) => handleFilterChange("teams", values)}
+            />
 
-          <select
-            id="teamFilter"
-            multiple
-            value={filters.teams}
-            onChange={(e) => handleFilterChange("teams", getSelectedValues(e))}
-          >
-            {teamNames.map((team) => (
-              <option key={team} value={team}>
-                {team}
-              </option>
-            ))}
-          </select>
-        </div>
+            <FilterSelect
+              label="Division"
+              options={divisionNames}
+              value={filters.divisions}
+              onChange={(values) => handleFilterChange("divisions", values)}
+            />
 
-        <div className="filter-group">
-          <div>
-            <label htmlFor="divisionFilter">Filter by division</label>
-            <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
+            <FilterSelect
+              label="Status"
+              options={statusNames}
+              value={filters.status}
+              onChange={(values) => handleFilterChange("status", values)}
+            />
           </div>
-
-          <select
-            id="divisionFilter"
-            multiple
-            value={filters.divisions}
-            onChange={(e) =>
-              handleFilterChange("divisions", getSelectedValues(e))
-            }
-          >
-            {divisionNames.map((division) => (
-              <option key={division} value={division}>
-                {division}
-              </option>
-            ))}
-          </select>
-        </div>
-
-        <div className="filter-group">
-          <div>
-            <label htmlFor="statusFilter">Filter by status</label>
-            <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
-          </div>
-
-          <select
-            id="statusFilter"
-            multiple
-            value={filters.status}
-            onChange={(e) => handleFilterChange("status", getSelectedValues(e))}
-          >
-            {statusNames.map((status) => (
-              <option key={status} value={status}>
-                {status}
-              </option>
-            ))}
-          </select>
         </div>
 
         <button className="btn" type="button" onClick={resetFilters}>
