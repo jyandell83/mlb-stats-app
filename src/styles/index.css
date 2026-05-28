@@ -223,7 +223,7 @@ h3 {
   text-decoration: underline;
 }
 
-.team-filter {
+.filter {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -234,20 +234,20 @@ h3 {
   border-radius: 12px;
 }
 
-.team-filter-group {
+.filter-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
   align-items: center;
 }
 
-.team-filter label {
+.filter label {
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--text);
 }
 
-.team-filter select {
+.filter select {
   width: 220px;
   min-height: 90px;
   height: 90px;
@@ -260,12 +260,12 @@ h3 {
   line-height: 1.5;
 }
 
-.team-filter select:focus {
+.filter select:focus {
   outline: 3px solid rgba(59, 130, 246, 0.3);
   border-color: #3b82f6;
 }
 
-.team-filter option {
+.filter option {
   padding: 0.45rem 0.6rem;
 }
 
@@ -275,7 +275,7 @@ h3 {
   margin: 0;
 }
 
-.team-filter .btn {
+.filter .btn {
   height: fit-content;
   margin-left: auto;
 }
@@ -380,7 +380,7 @@ h3 {
 
 /* phones */
 @media (max-width: 600px) {
-  .team-filter-group {
+  .filter-group {
     flex-direction: column;
   }
 

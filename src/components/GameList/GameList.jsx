@@ -81,8 +81,8 @@ export default function GameList({
 
   return (
     <>
-      <div className="team-filter">
-        <div className="team-filter-group">
+      <div className="filter">
+        <div className="filter-group">
           <div>
             <label htmlFor="teamFilter">Filter by team</label>
             <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
@@ -102,7 +102,7 @@ export default function GameList({
           </select>
         </div>
 
-        <div className="team-filter-group">
+        <div className="filter-group">
           <div>
             <label htmlFor="divisionFilter">Filter by division</label>
             <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
@@ -124,7 +124,7 @@ export default function GameList({
           </select>
         </div>
 
-        <div className="team-filter-group">
+        <div className="filter-group">
           <div>
             <label htmlFor="statusFilter">Filter by status</label>
             <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
