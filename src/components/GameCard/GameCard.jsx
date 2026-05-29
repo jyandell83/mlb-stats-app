@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import { getLiveGameFeed } from "./../../api/mlbApi.js";
 
+import { getGameVibe } from "../../utils/gameVibes.js";
+
 import GameHeader from "../GameHeader/GameHeader";
 import InningTable from "../InningTable/InningTable";
 import GameDetail from "../GameDetails/GameDetail";
@@ -17,6 +19,12 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
 
   const showLiveFeedButton = state === "Live";
   const showRecapButton = state === "Final";
+
+  const awayRuns = game.teams.away.score ?? 0;
+  const homeRuns = game.teams.home.score ?? 0;
+  const inning = game.linescore?.currentInning ?? 0;
+
+  const vibe = getGameVibe({ awayRuns, homeRuns, inning });
 
   const handleShowDetailsClick = () => {
     setShowLiveFeed(!showLiveFeed);
@@ -52,6 +60,12 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
   return (
     <>
       <GameHeader game={game} handlePlayerClick={handlePlayerClick} />
+      {vibe && (
+        <div className={`game-vibe ${vibe.className}`}>
+          <span className="game-vibe-icon">{vibe.icon}</span>
+          <span>{vibe.label}</span>
+        </div>
+      )}
 
       <div className=" flex justify-flex-end">
         {showLiveFeedButton && (

@@ -379,6 +379,23 @@ h3 {
   letter-spacing: 0.04em;
 }
 
+.game-vibe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  width: fit-content;
+  padding: 0.25rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: var(--surface-2);
+  border: 1px solid var(--border-color);
+}
+
+.game-vibe-icon {
+  line-height: 1;
+}
+
 /* phones */
 @media (max-width: 600px) {
   .filter-group {
