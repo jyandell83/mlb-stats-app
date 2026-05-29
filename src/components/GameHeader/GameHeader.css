@@ -1,0 +1,14 @@
+.team-column {
+  width: 200px;
+  text-align: center;
+}
+
+.matchup-divider {
+  width: 32px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.team-name {
+  min-height: 28px;
+}

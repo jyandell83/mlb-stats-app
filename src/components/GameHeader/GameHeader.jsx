@@ -1,3 +1,5 @@
+import "./GameHeader.css";
+
 const GameHeader = ({ game, handlePlayerClick }) => {
   const home = game.teams.home.team.name;
   const away = game.teams.away.team.name;
@@ -18,25 +20,25 @@ const GameHeader = ({ game, handlePlayerClick }) => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="flex flex-col align-center">
+        <div className="flex flex-col align-center team-column">
           <img
             src={`https://www.mlbstatic.com/team-logos/${awayId}.svg`}
             alt="team logo"
             className="team-logo"
           />
-          <div className="text-lg">{away}</div>
+          <div className="text-lg team-name">{away}</div>
           <div className="text-sm">
             ({awayTeamWins} - {awayTeamLosses})
           </div>
         </div>
-        <div>@</div>
-        <div className="flex flex-col align-center">
+        <div className="matchup-divider">@</div>
+        <div className="flex flex-col align-center team-column">
           <img
             src={`https://www.mlbstatic.com/team-logos/${homeId}.svg`}
             alt="team logo"
             className="team-logo"
           />
-          <div className="text-lg">{home}</div>
+          <div className="text-lg team-name">{home}</div>
           <div className="text-sm">
             ({homeTeamWins} - {homeTeamLosses})
           </div>

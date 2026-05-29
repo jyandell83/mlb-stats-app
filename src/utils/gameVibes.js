@@ -11,7 +11,7 @@ const GAME_VIBES = {
   },
   slugfest: {
     label: "Slugfest",
-    icon: "🦍",
+    icon: "🎆",
     className: "vibe-slugfest",
   },
   blowout: {
