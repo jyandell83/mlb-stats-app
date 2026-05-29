@@ -379,7 +379,8 @@ h3 {
   letter-spacing: 0.04em;
 }
 
-.game-vibe {
+.game-vibe,
+.game-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
@@ -390,9 +391,11 @@ h3 {
   font-weight: 600;
   background: #f3f4f6;
   border: 1px solid var(--primary);
+  margin: 5px;
 }
 
-.game-vibe-icon {
+.game-vibe-icon,
+.game-tag-icon {
   line-height: 1;
 }
 

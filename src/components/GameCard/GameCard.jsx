@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getLiveGameFeed } from "./../../api/mlbApi.js";
 
 import { getGameVibe } from "../../utils/gameVibes.js";
+import { getGameTags } from "../../utils/gameTags.js";
 
 import GameHeader from "../GameHeader/GameHeader";
 import InningTable from "../InningTable/InningTable";
@@ -25,6 +26,7 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
   const inning = game.linescore?.currentInning ?? 0;
 
   const vibe = getGameVibe({ awayRuns, homeRuns, inning });
+  const tags = getGameTags(game);
 
   const handleShowDetailsClick = () => {
     setShowLiveFeed(!showLiveFeed);
@@ -60,12 +62,22 @@ const GameCard = ({ game, innings, handlePlayerClick }) => {
   return (
     <>
       <GameHeader game={game} handlePlayerClick={handlePlayerClick} />
-      {vibe && (
-        <div className={`game-vibe ${vibe.className}`}>
-          <span className="game-vibe-icon">{vibe.icon}</span>
-          <span>{vibe.label}</span>
+      <div className="badge-container flex stack-on-mobile">
+        <div className="game-tags">
+          {tags.map((tag) => (
+            <div key={tag.label} className={`game-tag ${tag.className}`}>
+              <span>{tag.icon}</span>
+              <span>{tag.label}</span>
+            </div>
+          ))}
         </div>
-      )}
+        {vibe && (
+          <div className={`game-vibe ${vibe.className}`}>
+            <span className="game-vibe-icon">{vibe.icon}</span>
+            <span>{vibe.label}</span>
+          </div>
+        )}
+      </div>
 
       <div className=" flex justify-flex-end">
         {showLiveFeedButton && (
