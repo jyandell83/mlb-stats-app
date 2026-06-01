@@ -12,5 +12,10 @@ const formatDisplayDate = (dateStr) => {
 };
 
 export default function Header({ date }) {
-  return <h1 className="title">MLB Games - {formatDisplayDate(date)}</h1>;
+  return (
+    <h1 className="title flex stack-on-mobile">
+      <span>MLB Games -&nbsp;</span>
+      <span>{formatDisplayDate(date)}</span>
+    </h1>
+  );
 }

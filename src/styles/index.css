@@ -5,6 +5,7 @@ body {
   background-color: var(--bg);
   color: var(--text);
   font-family: var(--font-family);
+  margin: 0;
 }
 
 th {
@@ -22,6 +23,7 @@ h3 {
   padding: 1rem;
   background: var(--card);
   border-bottom: 1px solid #ddd;
+  width: 100%;
 }
 
 .top-nav a {
@@ -85,6 +87,7 @@ h3 {
 }
 
 .container {
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   padding: 24px;
@@ -233,6 +236,7 @@ h3 {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
+  width: 100%;
 }
 
 .filter-group {
@@ -402,12 +406,24 @@ h3 {
 
 /* phones */
 @media (max-width: 600px) {
+  .container {
+    padding: 0;
+  }
+
   .filter-group {
     flex-direction: column;
   }
 
   .details {
     flex-direction: column;
+  }
+
+  .filter {
+    border-radius: initial;
+  }
+
+  .gameCard {
+    border-radius: initial;
   }
 }
 
