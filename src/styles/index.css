@@ -359,7 +359,8 @@ h3 {
   -webkit-overflow-scrolling: touch;
 }
 
-.standings-division {
+.standings-division,
+.leader-card {
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
