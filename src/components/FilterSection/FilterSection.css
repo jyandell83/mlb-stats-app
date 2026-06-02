@@ -1,0 +1,24 @@
+.chevron {
+  transition: transform 0.2s ease;
+  margin-left: 0.5rem;
+
+  display: inline-block;
+
+  transition: transform 0.2s ease;
+}
+
+.chevron.open {
+  transform: rotate(90deg);
+}
+
+.filters-header button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+
+  font: inherit;
+  color: inherit;
+
+  cursor: pointer;
+}

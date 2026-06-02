@@ -1,13 +1,29 @@
-const FilterSection = ({ title, hint, children }) => {
+import { useState } from "react";
+
+import "./FilterSection.css";
+
+const FilterSection = ({ title = "Filter by", hint, children }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="filter">
       <div className="filters-header">
-        <h2>{title}</h2>
+        <button
+          type="button"
+          className="filter-section-header"
+          onClick={() => setIsOpen((open) => !open)}
+          aria-expanded={isOpen}
+        >
+          <h2>
+            {title}
+            <span className={`chevron ${isOpen ? "open" : ""}`}>›</span>
+          </h2>
+        </button>
 
-        {hint && <p className="filter-hint">{hint}</p>}
+        {hint && isOpen && <p className="filter-hint">{hint}</p>}
       </div>
 
-      <div className="filters-content">{children}</div>
+      {isOpen && <div className="filters-content">{children}</div>}
     </div>
   );
 };
