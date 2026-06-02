@@ -1,0 +1,23 @@
+.tabs-list {
+  display: flex;
+  gap: 0.5rem;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 1rem;
+  overflow-x: auto;
+}
+
+.tabs-button {
+  border: none;
+  background: transparent;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.tabs-button.active {
+  color: var(--text);
+  border-bottom-color: currentColor;
+  font-weight: 600;
+}

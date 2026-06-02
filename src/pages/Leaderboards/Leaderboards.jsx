@@ -1,9 +1,15 @@
 import LeagueLeaderCard from "../../components/LeagueLeaderCard/LeagueLeaderCard";
+import Tabs from "../../components/Tabs/Tabs";
 
 import { useState } from "react";
 
 const Leaderboards = () => {
   const [range, setRange] = useState("season");
+  const [activeTab, setActiveTab] = useState("hitting");
+  const leaderboardTabs = [
+    { id: "hitting", label: "Hitting" },
+    { id: "pitching", label: "Pitching" },
+  ];
   const leaderCards = [
     { title: "Home Runs", category: "homeRuns", statGroup: "hitting" },
     { title: "RBI", category: "runsBattedIn", statGroup: "hitting" },
@@ -13,6 +19,13 @@ const Leaderboards = () => {
     { title: "Strikeouts", category: "strikeOuts", statGroup: "pitching" },
     { title: "K/9", category: "strikeoutsPer9Inn", statGroup: "pitching" },
   ];
+  const hittingLeaders = leaderCards.filter(
+    (card) => card.statGroup === "hitting",
+  );
+
+  const pitchingLeaders = leaderCards.filter(
+    (card) => card.statGroup === "pitching",
+  );
   const leaderRanges = [
     { label: "Season", value: "season" },
     { label: "Last 7 Days", value: "last7" },
@@ -27,11 +40,31 @@ const Leaderboards = () => {
           </option>
         ))}
       </select>
-      <div className="leader-grid">
-        {leaderCards.map((card) => (
-          <LeagueLeaderCard key={card.category} {...card} range={range} />
-        ))}
-      </div>
+      <section className="leaderboards">
+        <h1>Leaderboards</h1>
+
+        <Tabs
+          tabs={leaderboardTabs}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
+
+        {activeTab === "hitting" && (
+          <div className="leader-grid">
+            {hittingLeaders.map((card) => (
+              <LeagueLeaderCard key={card.category} {...card} range={range} />
+            ))}
+          </div>
+        )}
+
+        {activeTab === "pitching" && (
+          <div className="leader-grid">
+            {pitchingLeaders.map((card) => (
+              <LeagueLeaderCard key={card.category} {...card} range={range} />
+            ))}
+          </div>
+        )}
+      </section>
     </>
   );
 };
