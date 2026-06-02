@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import GameCard from "../GameCard/GameCard";
+import FilterSection from "../FilterSection/FilterSection";
 import FilterSelect from "../FilterSelect/FilterSelect";
 
 export default function GameList({
@@ -79,40 +80,35 @@ export default function GameList({
 
   return (
     <>
-      <div className="filter">
-        <div className="filters">
-          <div className="filters-header">
-            <h2>Filter by</h2>
-            <p className="filter-hint">Hold Ctrl/Cmd to select multiple</p>
-          </div>
-          <div className="flex stack-on-mobile">
-            <FilterSelect
-              label="Team"
-              options={teamNames}
-              value={filters.teams}
-              onChange={(values) => handleFilterChange("teams", values)}
-            />
+      <FilterSection title="Filter by" hint="Hold Ctrl/Cmd to select multiple">
+        <div className="flex stack-on-mobile">
+          <FilterSelect
+            label="Team"
+            options={teamNames}
+            value={filters.teams}
+            onChange={(values) => handleFilterChange("teams", values)}
+          />
 
-            <FilterSelect
-              label="Division"
-              options={divisionNames}
-              value={filters.divisions}
-              onChange={(values) => handleFilterChange("divisions", values)}
-            />
+          <FilterSelect
+            label="Division"
+            options={divisionNames}
+            value={filters.divisions}
+            onChange={(values) => handleFilterChange("divisions", values)}
+          />
 
-            <FilterSelect
-              label="Status"
-              options={statusNames}
-              value={filters.status}
-              onChange={(values) => handleFilterChange("status", values)}
-            />
-          </div>
+          <FilterSelect
+            label="Status"
+            options={statusNames}
+            value={filters.status}
+            onChange={(values) => handleFilterChange("status", values)}
+          />
         </div>
-
-        <button className="btn" type="button" onClick={resetFilters}>
-          Reset Filters
-        </button>
-      </div>
+        <div className="flex">
+          <button className="btn" type="button" onClick={resetFilters}>
+            Clear Filters
+          </button>
+        </div>
+      </FilterSection>
 
       <ul className="gameList">
         {filteredGames.map((game) => {
