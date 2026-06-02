@@ -5,13 +5,30 @@ export default function GameDetail({
   gameDetails,
   handlePlayerClick,
 }) {
+  const currentInning = gameDetails.liveData.linescore.currentInning;
+
+  const inningHalf = gameDetails.liveData.linescore.inningHalf.toLowerCase();
+
+  const inningData =
+    gameDetails.liveData.plays.playsByInning[currentInning - 1];
+
+  const playIndexes = inningData?.[inningHalf] || [];
+
+  const currentHalfInningPlays = playIndexes.map(
+    (index) => gameDetails.liveData.plays.allPlays[index],
+  );
+
   return (
     <div>
       {selectedGamePk && gameDetails && (
         <div>
           <div>
-            {gameDetails.liveData.plays.currentPlay?.result?.description ??
-              "No play yet"}
+            {`${inningHalf} of ${currentInning} `}
+            <ul className="play-feed">
+              {currentHalfInningPlays.map((play) => (
+                <li key={play.atBatIndex}>{play.result.description}</li>
+              ))}
+            </ul>
           </div>
 
           <div className="details flex justify-between">
