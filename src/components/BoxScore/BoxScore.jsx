@@ -7,10 +7,7 @@ import Tabs from "../Tabs/Tabs";
 const BoxScore = ({ gamePk, handlePlayerClick }) => {
   const [boxScore, setBoxScore] = useState(null);
   const [activeTab, setActiveTab] = useState("away");
-  const boxScoreTabs = [
-    { id: "away", label: "Away" },
-    { id: "home", label: "Home" },
-  ];
+
   useEffect(() => {
     const fetchBoxscore = async () => {
       try {
@@ -54,6 +51,14 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
   const homeTeamStats = boxScore?.teams?.home?.teamStats;
   const awayTeamStats = boxScore?.teams?.away?.teamStats;
 
+  const homeTeamName = boxScore?.teams?.home.team.name;
+  const awayTeamName = boxScore?.teams?.away.team.name;
+
+  const boxScoreTabs = [
+    { id: "away", label: awayTeamName },
+    { id: "home", label: homeTeamName },
+  ];
+
   return (
     <>
       <Tabs
@@ -65,7 +70,6 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
         <div className="box-score">
           {activeTab === "away" && (
             <div className="card">
-              <div>{boxScore?.teams?.away.team.name}</div>
               <table className="stats-table">
                 <thead>
                   <tr>
@@ -173,7 +177,6 @@ const BoxScore = ({ gamePk, handlePlayerClick }) => {
 
           {activeTab === "home" && (
             <div className="card">
-              <div>{boxScore?.teams?.home.team.name}</div>
               <table className="stats-table">
                 <thead>
                   <tr>
