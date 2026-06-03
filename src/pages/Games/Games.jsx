@@ -22,7 +22,6 @@ const Games = () => {
   const [selectedPlayerId, setSelectedPlayerId] = useState(null);
   const [selectedPlayerName, setSelectedPlayerName] = useState(null);
   const [currentDate, setCurrentDate] = useState(formattedDate);
-  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     const fetchGames = () => {
@@ -88,14 +87,6 @@ const Games = () => {
     setCurrentDate(value);
   };
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-
-    setTheme(newTheme);
-
-    document.documentElement.setAttribute("data-theme", newTheme);
-  };
-
   return (
     <div className="container">
       <div>
@@ -113,9 +104,6 @@ const Games = () => {
           <option value={formattedDate}>Today</option>
           <option value={formattedYesterday}>Yesterday</option>
         </select>
-        <button className="theme-toggle" onClick={toggleTheme}>
-          {theme === "dark" ? "☀️" : "🌙"}
-        </button>
       </div>
 
       <Header date={currentDate} />

@@ -343,6 +343,7 @@ h3 {
   border-radius: 999px;
   padding: 0.4rem 0.7rem;
   cursor: pointer;
+  margin-left: auto;
   transition:
     background 0.2s ease,
     color 0.2s ease,
