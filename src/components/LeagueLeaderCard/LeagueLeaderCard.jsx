@@ -37,7 +37,6 @@ const LeagueLeaderCard = ({ title, category, statGroup, range }) => {
   }, [category, statGroup, range]);
 
   const columns = [
-    { label: "#", key: "rank" },
     { label: "Player", key: "player" },
     { label: "Team", key: "team" },
     { label: title, key: "value" },
