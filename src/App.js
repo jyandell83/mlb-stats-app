@@ -18,10 +18,13 @@ export default function App() {
   return (
     <>
       <nav className="top-nav">
-        <NavLink to="/home">Home</NavLink>
-        <NavLink to="/standings">Standings</NavLink>
-        <NavLink to="/leaderboards">Leaderboards</NavLink>
-        <NavLink to="/">Games</NavLink>
+        <div className="nav-links">
+          <NavLink to="/home">Home</NavLink>
+          <NavLink to="/standings">Standings</NavLink>
+          <NavLink to="/leaderboards">Leaderboards</NavLink>
+          <NavLink to="/">Games</NavLink>
+        </div>
+
         <button className="theme-toggle" onClick={toggleTheme}>
           {theme === "dark" ? "☀️" : "🌙"}
         </button>

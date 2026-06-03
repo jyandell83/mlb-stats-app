@@ -69,17 +69,27 @@ h3 {
 
 .top-nav {
   display: flex;
-  gap: 1rem;
   padding: 1rem;
   background: var(--card);
   border-bottom: 1px solid #ddd;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
 }
 
 .top-nav a {
   color: var(--text);
   text-decoration: none;
   font-weight: 600;
+  cursor: pointer;
 }
 
 .top-nav a.active {
@@ -476,6 +486,26 @@ h3 {
 
   .gameCard {
     border-radius: initial;
+  }
+
+  .top-nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .theme-toggle {
+    align-self: flex-end;
+    order: -1;
+  }
+
+  .nav-links {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  .top-nav a {
+    padding: 0.5rem 0.75rem;
+    text-align: center;
   }
 }
 
