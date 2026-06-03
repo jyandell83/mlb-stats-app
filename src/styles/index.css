@@ -401,6 +401,13 @@ h3 {
   overflow: hidden;
 }
 
+.stats-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .stats-table th,
 .stats-table td {
   padding: 0.85rem 1rem;

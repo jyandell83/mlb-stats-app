@@ -57,7 +57,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
             ×
           </button>
         </div>
-        <div>
+        <div className="stats-table-scroll">
           {isPitcher ? (
             <div className="pitcher-stats">
               <h3>Pitching Stats</h3>
