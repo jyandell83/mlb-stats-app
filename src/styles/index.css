@@ -398,7 +398,6 @@ h3 {
   font-size: 0.95rem;
   background: var(--bg);
   border-radius: 12px;
-  overflow: hidden;
 }
 
 .stats-table-scroll {
@@ -406,6 +405,21 @@ h3 {
   max-width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+}
+.stats-table th:first-child,
+.stats-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  background: var(--bg);
+}
+
+.stats-table tbody tr:nth-child(odd) td:first-child {
+  background-color: var(--bg);
+}
+
+.stats-table tbody tr:nth-child(even) td:first-child {
+  background-color: var(--row-alt);
 }
 
 .stats-table th,
