@@ -532,6 +532,24 @@ h3 {
     padding: 0.5rem 0.75rem;
     text-align: center;
   }
+  .stats-table {
+    font-size: 0.85rem;
+  }
+
+  .stats-table th,
+  .stats-table td {
+    text-align: left;
+    padding: 0.5rem 0.6rem;
+    white-space: nowrap;
+    width: 50px;
+  }
+
+  .stats-table th:first-child,
+  .stats-table td:first-child {
+    width: 70px;
+    min-width: 70px;
+    max-width: 70px;
+  }
 }
 
 /* tablets / narrow laptops */

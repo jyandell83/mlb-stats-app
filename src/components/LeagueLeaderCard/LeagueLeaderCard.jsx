@@ -38,8 +38,8 @@ const LeagueLeaderCard = ({ title, category, statGroup, range }) => {
 
   const columns = [
     { label: "Player", key: "player" },
-    { label: "Team", key: "team" },
     { label: title, key: "value" },
+    { label: "Team", key: "team" },
   ];
   return (
     <section className="leader-card card">
