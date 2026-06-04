@@ -1,4 +1,5 @@
 import BaseDiamond from "../BaseDiamond/BaseDiamond.jsx";
+import PlayLog from "../PlayLog/PlayLog.jsx";
 
 export default function GameDetail({
   selectedGamePk,
@@ -22,14 +23,11 @@ export default function GameDetail({
     <div>
       {selectedGamePk && gameDetails && (
         <div>
-          <div>
-            {`${inningHalf} of ${currentInning} `}
-            <ul className="play-feed">
-              {currentHalfInningPlays.map((play) => (
-                <li key={play.atBatIndex}>{play.result.description}</li>
-              ))}
-            </ul>
-          </div>
+          <PlayLog
+            inningHalf={inningHalf}
+            currentInning={currentInning}
+            currentHalfInningPlays={currentHalfInningPlays}
+          />
 
           <div className="details flex justify-evenly">
             <div>
