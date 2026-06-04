@@ -1,0 +1,48 @@
+.play-log {
+  margin-top: 1rem;
+}
+
+.inning-group {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--card);
+  margin-bottom: 1rem;
+}
+
+.inning-header {
+  padding: 0.6rem 0.9rem;
+  font-weight: 700;
+  background: var(--badge-bg);
+  border-bottom: 1px solid var(--border);
+}
+
+.play-item {
+  display: grid;
+  grid-template-columns: 14px 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.play-item:last-child {
+  border-bottom: none;
+}
+
+.play-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--text-muted);
+  margin-top: 0.45rem;
+}
+
+.play-item p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.scoring-play {
+  background: rgba(34, 197, 94, 0.08);
+  font-weight: 600;
+}

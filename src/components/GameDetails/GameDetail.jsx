@@ -8,27 +8,23 @@ export default function GameDetail({
 }) {
   const currentInning = gameDetails.liveData.linescore.currentInning;
 
-  const inningHalf = gameDetails.liveData.linescore.inningHalf.toLowerCase();
+  const inningHalf = gameDetails.liveData.linescore.inningHalf;
 
   const inningData =
     gameDetails.liveData.plays.playsByInning[currentInning - 1];
 
-  const playIndexes = inningData?.[inningHalf] || [];
+  const playIndexes = inningData?.[inningHalf.toLowerCase()] || [];
 
   const currentHalfInningPlays = playIndexes.map(
     (index) => gameDetails.liveData.plays.allPlays[index],
   );
 
+  console.log(currentHalfInningPlays, "half inning plays");
+
   return (
     <div>
       {selectedGamePk && gameDetails && (
         <div>
-          <PlayLog
-            inningHalf={inningHalf}
-            currentInning={currentInning}
-            currentHalfInningPlays={currentHalfInningPlays}
-          />
-
           <div className="details flex justify-evenly">
             <div>
               <BaseDiamond
@@ -99,6 +95,11 @@ export default function GameDetail({
               )}
             </div>
           </div>
+          <PlayLog
+            inningHalf={inningHalf}
+            currentInning={currentInning}
+            currentHalfInningPlays={currentHalfInningPlays}
+          />
         </div>
       )}
     </div>

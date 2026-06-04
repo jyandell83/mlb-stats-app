@@ -1,13 +1,25 @@
+import "./PlayLog.css";
+
 const PlayLog = ({ inningHalf, currentInning, currentHalfInningPlays }) => {
   return (
-    <div>
-      {`${inningHalf} of ${currentInning} `}
-      <ul className="play-feed">
+    <section className="play-log">
+      <h3>Play by Play</h3>
+
+      <div className="inning-group">
+        <div className="inning-header">{`${inningHalf} of ${currentInning} `}</div>
+
         {currentHalfInningPlays.map((play) => (
-          <li key={play.atBatIndex}>{play.result.description}</li>
+          <div className="play-item">
+            <span className="play-dot"></span>
+            <p key={play.atBatIndex}>
+              {play.result.description}
+              {play.result.eventType === "home_run" &&
+                ` ${play.playEvents.at(-1).hitData?.totalDistance} feet`}
+            </p>
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
+    </section>
   );
 };
 
