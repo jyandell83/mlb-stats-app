@@ -12,6 +12,8 @@
   --row-hover: rgba(0, 0, 0, 0.08);
   --row-total-bg: rgba(12, 35, 64, 0.08);
   --row-header-bg: rgba(12, 35, 64, 0.08);
+  --btn-text: #fff;
+  --btn-hover: #1e3a5f;
 }
 
 [data-theme="dark"] {

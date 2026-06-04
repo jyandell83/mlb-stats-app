@@ -19,8 +19,6 @@ export default function GameDetail({
     (index) => gameDetails.liveData.plays.allPlays[index],
   );
 
-  console.log(currentHalfInningPlays, "half inning plays");
-
   return (
     <div>
       {selectedGamePk && gameDetails && (
@@ -82,9 +80,9 @@ export default function GameDetail({
             <div className="flex flex-col">
               <h3>Top Performers</h3>
               {gameDetails.liveData.boxscore.topPerformers?.map(
-                (topPerformer) => {
+                (topPerformer, index) => {
                   return (
-                    <div>
+                    <div key={index}>
                       <span>{`${topPerformer.player.person.fullName} `}</span>
                       {topPerformer.type === "hitter"
                         ? topPerformer.player.stats.batting.summary

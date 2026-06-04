@@ -24,8 +24,8 @@ const InningTable = ({ innings, game, gameDetails }) => {
                 {gameDetails?.gameData?.teams.away.abbreviation}
               </td>
 
-              {innings.map((inning) => (
-                <td key={inning.num}>{inning.away?.runs}</td>
+              {innings.map((inning, index) => (
+                <td key={index}>{inning.away?.runs}</td>
               ))}
 
               <td className="bold total-cell">
@@ -41,8 +41,8 @@ const InningTable = ({ innings, game, gameDetails }) => {
                 {gameDetails?.gameData?.teams.home.abbreviation}
               </td>
 
-              {innings.map((inning) => (
-                <td key={inning.num}>{inning.home?.runs}</td>
+              {innings.map((inning, index) => (
+                <td key={index}>{inning.home?.runs}</td>
               ))}
 
               <td className="bold total-cell">
