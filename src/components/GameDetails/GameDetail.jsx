@@ -31,22 +31,21 @@ export default function GameDetail({
             </ul>
           </div>
 
-          <div className="details flex justify-between">
+          <div className="details flex justify-evenly">
             <div>
-              {/* {selectedGamePk} uncomment to troubleshoot gamepk*/}
+              <BaseDiamond
+                bases={{
+                  first: gameDetails?.liveData?.linescore?.offense?.first,
+                  second: gameDetails?.liveData?.linescore?.offense?.second,
+                  third: gameDetails?.liveData?.linescore?.offense?.third,
+                }}
+                outs={gameDetails.liveData.linescore.outs}
+              />
               <div>
                 Count:{" "}
                 {`${gameDetails.liveData.linescore.balls} - ${gameDetails.liveData.linescore.strikes}`}
               </div>
             </div>
-            <BaseDiamond
-              bases={{
-                first: gameDetails?.liveData?.linescore?.offense?.first,
-                second: gameDetails?.liveData?.linescore?.offense?.second,
-                third: gameDetails?.liveData?.linescore?.offense?.third,
-              }}
-              outs={gameDetails.liveData.linescore.outs}
-            />
 
             <div className="flex justify-evenly flex-col">
               <div>

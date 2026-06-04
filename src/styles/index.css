@@ -487,6 +487,14 @@ h3 {
   line-height: 1;
 }
 
+.details {
+  flex-wrap: wrap;
+}
+
+.details > * {
+  margin: 0.5rem;
+}
+
 /* phones */
 @media (max-width: 600px) {
   .container {
@@ -494,10 +502,6 @@ h3 {
   }
 
   .filter-group {
-    flex-direction: column;
-  }
-
-  .details {
     flex-direction: column;
   }
 
