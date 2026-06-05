@@ -2,6 +2,9 @@ import { useEffect, useState } from "react";
 
 import { getStandings } from "../../api/mlbApi";
 
+import LeagueStandings from "./LeagueStandings";
+import DivisionStandings from "./DivisionStandings";
+import Tabs from "../../components/Tabs/Tabs";
 import StatsTable from "../../components/StatsTable/StatsTable";
 import Header from "../../components/Header/Header";
 import FilterSection from "../../components/FilterSection/FilterSection";
@@ -13,6 +16,11 @@ const Standings = () => {
     leagues: [],
     divisions: [],
   });
+  const [activeTab, setActiveTab] = useState("divisions");
+  const standingsTabs = [
+    { id: "divisions", label: "By Division" },
+    { id: "leagues", label: "By League" },
+  ];
 
   const handleFilterChange = (filterKey, values) => {
     setFilters((prev) => ({
@@ -81,6 +89,13 @@ const Standings = () => {
   return (
     <>
       <Header text="Standings" />
+      <Tabs
+        tabs={standingsTabs}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+      />
+      {activeTab === "divisions" && <DivisionStandings />}
+      {activeTab === "leagues" && <LeagueStandings />}
       <FilterSection title="Filter by" hint="Hold Ctrl/Cmd to select multiple">
         <div className="flex stack-on-mobile">
           <FilterSelect
