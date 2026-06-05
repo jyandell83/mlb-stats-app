@@ -4,7 +4,7 @@
 
 .inning-group {
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 0.75rem;
   overflow: hidden;
   background: var(--card);
   margin-bottom: 1rem;
@@ -13,13 +13,11 @@
 .inning-header {
   padding: 0.6rem 0.9rem;
   font-weight: 700;
-  background: var(--badge-bg);
-  border-bottom: 1px solid var(--border);
 }
 
 .play-item {
-  display: grid;
-  grid-template-columns: 14px 1fr;
+  display: flex;
+  align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 0.9rem;
   border-bottom: 1px solid var(--border);
@@ -30,19 +28,18 @@
 }
 
 .play-dot {
-  width: 8px;
-  height: 8px;
+  width: 1.75rem;
+  height: 1.75rem;
   border-radius: 999px;
-  background: var(--text-muted);
-  margin-top: 0.45rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .play-item p {
   margin: 0;
   line-height: 1.4;
-}
-
-.scoring-play {
-  background: rgba(34, 197, 94, 0.08);
-  font-weight: 600;
 }
