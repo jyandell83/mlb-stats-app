@@ -19,7 +19,7 @@ export default function App() {
     <>
       <nav className="top-nav">
         <div className="nav-links">
-          <NavLink to="/home">Home</NavLink>
+          {/* <NavLink to="/home">Home</NavLink> */}
           <NavLink to="/standings">Standings</NavLink>
           <NavLink to="/leaderboards">Leaderboards</NavLink>
           <NavLink to="/">Games</NavLink>
