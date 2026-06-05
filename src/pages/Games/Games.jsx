@@ -106,7 +106,7 @@ const Games = () => {
         </select>
       </div>
 
-      <Header date={currentDate} />
+      <Header date={currentDate} text="MLB Games" />
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex flex-col">

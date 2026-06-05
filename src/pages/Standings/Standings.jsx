@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getStandings } from "../../api/mlbApi";
 
 import StatsTable from "../../components/StatsTable/StatsTable";
+import Header from "../../components/Header/Header";
 
 const Standings = () => {
   const [standings, setStandings] = useState(null);
@@ -35,6 +36,7 @@ const Standings = () => {
 
   return (
     <>
+      <Header text="Standings" />
       {divisions.map((division) => (
         <section key={division.division.id} className="standings-division card">
           <h2>{division.division.name}</h2>

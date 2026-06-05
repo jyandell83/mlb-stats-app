@@ -1,5 +1,6 @@
 import LeagueLeaderCard from "../../components/LeagueLeaderCard/LeagueLeaderCard";
 import Tabs from "../../components/Tabs/Tabs";
+import Header from "../../components/Header/Header";
 
 import { useState } from "react";
 
@@ -33,6 +34,7 @@ const Leaderboards = () => {
   ];
   return (
     <>
+      <Header text="Leader Boards" />
       <select value={range} onChange={(e) => setRange(e.target.value)}>
         {leaderRanges.map((range) => (
           <option key={range.value} value={range.value}>
@@ -41,8 +43,6 @@ const Leaderboards = () => {
         ))}
       </select>
       <section className="leaderboards">
-        <h1>Leaderboards</h1>
-
         <Tabs
           tabs={leaderboardTabs}
           activeTab={activeTab}

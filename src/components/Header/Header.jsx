@@ -11,11 +11,17 @@ const formatDisplayDate = (dateStr) => {
   });
 };
 
-export default function Header({ date }) {
+export default function Header({ text, date }) {
   return (
-    <h1 className="title flex stack-on-mobile">
-      <span>MLB Games -&nbsp;</span>
-      <span>{formatDisplayDate(date)}</span>
-    </h1>
+    <>
+      <h1 className="title flex stack-on-mobile">
+        <span>{text}</span>
+      </h1>
+      {date && (
+        <h2>
+          <span>{formatDisplayDate(date)}</span>
+        </h2>
+      )}
+    </>
   );
 }
