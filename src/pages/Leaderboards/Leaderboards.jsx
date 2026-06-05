@@ -35,13 +35,18 @@ const Leaderboards = () => {
   return (
     <>
       <Header text="Leader Boards" />
-      <select value={range} onChange={(e) => setRange(e.target.value)}>
-        {leaderRanges.map((range) => (
-          <option key={range.value} value={range.value}>
-            {range.label}
-          </option>
+      <div className="segmented-control">
+        {leaderRanges.map((leaderRange) => (
+          <button
+            key={leaderRange.value}
+            type="button"
+            className={range === leaderRange.value ? "active" : ""}
+            onClick={() => setRange(leaderRange.value)}
+          >
+            {leaderRange.label}
+          </button>
         ))}
-      </select>
+      </div>
       <section className="leaderboards">
         <Tabs
           tabs={leaderboardTabs}
