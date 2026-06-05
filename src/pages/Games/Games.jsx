@@ -82,11 +82,6 @@ const Games = () => {
     setPlayerModalOpen(true);
   };
 
-  const handleDateChange = (e) => {
-    const value = e.target.value;
-    setCurrentDate(value);
-  };
-
   return (
     <div className="container">
       <div>
@@ -99,14 +94,22 @@ const Games = () => {
         )}
       </div>
 
-      <div className="flex justify-between">
-        <select value={currentDate} onChange={handleDateChange}>
-          <option value={formattedDate}>Today</option>
-          <option value={formattedYesterday}>Yesterday</option>
-        </select>
-      </div>
-
       <Header date={currentDate} text="MLB Games" />
+      <div className="segmented-control">
+        <button
+          className={currentDate === formattedYesterday ? "active" : ""}
+          onClick={() => setCurrentDate(formattedYesterday)}
+        >
+          Yesterday
+        </button>
+
+        <button
+          className={currentDate === formattedDate ? "active" : ""}
+          onClick={() => setCurrentDate(formattedDate)}
+        >
+          Today
+        </button>
+      </div>
 
       {games.length === 0 && <div>No games today.</div>}
       <div className="flex flex-col">
