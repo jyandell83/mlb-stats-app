@@ -63,8 +63,8 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
               <h3>Pitching Stats</h3>
               <StatsTable
                 columns={[
-                  { label: "Team", key: "team" },
                   { label: "Year", key: "season" },
+                  { label: "Team", key: "team" },
                   { label: "W", key: "wins" },
                   { label: "L", key: "losses" },
                   { label: "ERA", key: "era" },
@@ -101,8 +101,8 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
           ) : (
             <StatsTable
               columns={[
-                { label: "Team", key: "team" },
                 { label: "Year", key: "season" },
+                { label: "Team", key: "team" },
                 { label: "AVG", key: "avg" },
                 { label: "G", key: "gamesPlayed" },
                 { label: "AB", key: "atBats" },
