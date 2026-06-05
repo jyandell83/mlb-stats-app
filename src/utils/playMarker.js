@@ -1,6 +1,6 @@
 export const getPlayMarker = (play) => {
   const eventType = play.result?.eventType;
-  const detailsCode = play.playEvents?.at(-1)?.details ?? "";
+  const detailsCode = play.playEvents?.at(-1)?.details?.code ?? "";
 
   if (eventType === "home_run") return "HR";
   if (eventType === "strikeout") {
