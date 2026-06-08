@@ -72,7 +72,7 @@ h3 {
   display: flex;
   padding: 1rem;
   background: var(--card);
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--primary);
   width: 100%;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -543,6 +543,7 @@ h3 {
   .top-nav {
     flex-direction: column;
     align-items: stretch;
+    border-bottom: 2px solid var(--primary);
   }
 
   .theme-toggle {
