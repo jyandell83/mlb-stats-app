@@ -522,6 +522,10 @@ h3 {
   border-color: var(--primary);
 }
 
+.filters-content .flex {
+  flex-wrap: wrap;
+}
+
 /* phones */
 @media (max-width: 600px) {
   .container {
