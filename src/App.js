@@ -5,6 +5,7 @@ import HomeDashboard from "./pages/HomeDashboard/HomeDashboard";
 import Standings from "./pages/Standings/Standings";
 import Leaderboards from "./pages/Leaderboards/Leaderboards";
 import Games from "./pages/Games/Games";
+import Footer from "./components/Footer/Footer";
 
 export default function App() {
   const [theme, setTheme] = useState("light");
@@ -38,6 +39,7 @@ export default function App() {
           <Route path="/" element={<Games />} />
         </Routes>
       </main>
+      <Footer disclaimer="no affiliation with MLB" />
     </>
   );
 }

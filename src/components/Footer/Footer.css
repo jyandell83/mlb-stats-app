@@ -1,0 +1,14 @@
+.footer {
+  margin-top: auto;
+  padding: 12px 16px;
+  font-size: 0.8rem;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+
+.footer div {
+  padding: 1rem;
+}
