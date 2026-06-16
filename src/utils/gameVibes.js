@@ -19,6 +19,11 @@ const GAME_VIBES = {
     icon: "💥",
     className: "vibe-blowout",
   },
+  mercyrule: {
+    label: "Mercy Rule",
+    icon: "🙏",
+    className: "vibe-mercy-rule",
+  },
 };
 
 export function getGameVibe({ awayRuns = 0, homeRuns = 0, inning = 0 }) {
@@ -31,6 +36,10 @@ export function getGameVibe({ awayRuns = 0, homeRuns = 0, inning = 0 }) {
 
   if (inning >= 5 && totalRuns <= 3 && runDiff <= 2) {
     return GAME_VIBES.pitchersDuel;
+  }
+
+  if (inning >= 5 && runDiff >= 10) {
+    return GAME_VIBES.mercyrule;
   }
 
   if (inning >= 5 && runDiff >= 7) {
