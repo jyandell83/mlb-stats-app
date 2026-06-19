@@ -4,10 +4,16 @@ import { getPlayerStats } from "../../api/mlbApi";
 
 import "./PlayerModal.css";
 import StatsTable from "../StatsTable/StatsTable";
+import Tabs from "../Tabs/Tabs";
 
 export default function PlayerModal({ onClose, playerId, playerName }) {
   const [yearByYearStats, setYearByYearStats] = useState(null);
   const [gameLogStats, setGameLogStats] = useState(null);
+  const [activeTab, setActiveTab] = useState("yearByYear");
+  const playerModalTabs = [
+    { id: "yearByYear", label: "By Season" },
+    { id: "gameLog", label: "Game Log" },
+  ];
 
   useEffect(() => {
     if (!playerId) return;
@@ -57,6 +63,11 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
             ×
           </button>
         </div>
+        <Tabs
+          tabs={playerModalTabs}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
         <div className="stats-table-scroll">
           {isPitcher ? (
             <div className="pitcher-stats">
