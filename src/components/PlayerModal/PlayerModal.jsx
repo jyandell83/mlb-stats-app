@@ -44,8 +44,6 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
   );
 
-  console.log(gameLogSplitsSorted);
-
   const isPitcher =
     yearByYearStats?.stats?.[0]?.group?.displayName === "pitching";
 
