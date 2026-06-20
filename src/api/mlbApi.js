@@ -2,11 +2,6 @@
 const BASE_URL = "https://statsapi.mlb.com/api/v1";
 const LIVE_BASE_URL = "https://statsapi.mlb.com/api/v1.1";
 
-// const today = new Date();
-// const yesterday = new Date(new Date().setDate(new Date().getDate() - 1));
-// const formattedDate = today.toLocaleDateString("en-CA");
-// const formattedDate = "2026-04-24";
-
 /**
  *  Get schedule + basic game data for a specific date
  * - Includes teams, score, inning, game status
@@ -18,16 +13,11 @@ export const getSchedule = (date) =>
 
 /**
  *  Get full live game data (VERY detailed)
- * - Pitch-by-pitch
- * - Balls, strikes, outs
- * - Runners on base
- * - Batter / pitcher info
  * - Use ONLY when a game is expanded
  */
 export const getLiveGameFeed = (gamePk) =>
   `${LIVE_BASE_URL}/game/${gamePk}/feed/live`;
 
-/**--------------------------untested below ---------------------------------- */
 /**
  * Get boxscore for a game
  * - Lineups
@@ -38,7 +28,7 @@ export const getLiveGameFeed = (gamePk) =>
 export const getBoxscore = (gamePk) => `${BASE_URL}/game/${gamePk}/boxscore`;
 
 /**
- *  Get linescore for a game (lighter than live feed)
+ *  Get linescore for a game
  * - Inning-by-inning scoring
  * - Count (balls/strikes/outs)
  * - Good alternative to live feed if you want less data
@@ -47,27 +37,22 @@ export const getLinescore = (gamePk) => `${BASE_URL}/game/${gamePk}/linescore`;
 
 /**
  *  Get player season stats
- * - Batting avg, HR, RBI, ERA, etc.
  */
 export const getPlayerStats = (playerId, type = "season") =>
   `${BASE_URL}/people/${playerId}/stats?stats=${type}`;
 
 /**
  *  Get team roster
- * - List of players on a team
- * - Useful for lineups or player lookup
  */
 export const getTeamRoster = (teamId) => `${BASE_URL}/teams/${teamId}/roster`;
 
 /**
  *  Get team stats
- * - Overall team performance stats
  */
 export const getTeamStats = (teamId) => `${BASE_URL}/teams/${teamId}/stats`;
 
 /**
  * Get league standings
- * - Divisions, wins/losses, rankings
  */
 export const getStandings = () =>
   `${BASE_URL}/standings?sportId=1&leagueId=103,104&standingsTypes=regularSeason&hydrate=league,division`;

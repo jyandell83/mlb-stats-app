@@ -37,11 +37,14 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
     fetchStats();
   }, [playerId]);
 
-  console.log(gameLogStats);
-  console.log(yearByYearStats);
-
   const splits = yearByYearStats?.stats?.[0]?.splits ?? [];
   const gameLogSplits = gameLogStats?.stats?.[0]?.splits ?? [];
+
+  const gameLogSplitsSorted = [...gameLogSplits].sort(
+    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+  );
+
+  console.log(gameLogSplitsSorted);
 
   const isPitcher =
     yearByYearStats?.stats?.[0]?.group?.displayName === "pitching";
@@ -178,7 +181,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
                     { label: "SO", key: "strikeOuts" },
                     { label: "WHIP", key: "whip" },
                   ]}
-                  rows={gameLogSplits.map((split) => ({
+                  rows={gameLogSplitsSorted.map((split) => ({
                     team: split?.team?.name,
                     date: split?.date,
                     wins: split?.stat?.wins,
@@ -218,7 +221,7 @@ export default function PlayerModal({ onClose, playerId, playerName }) {
                   { label: "SLG", key: "slg" },
                   { label: "OPS", key: "ops" },
                 ]}
-                rows={gameLogSplits.map((split) => ({
+                rows={gameLogSplitsSorted.map((split) => ({
                   team: split?.team?.name,
                   date: split?.date,
                   avg: split?.stat?.avg,
